@@ -6,11 +6,11 @@
 <meta name="theme-color" content="#0c0c16">
 <title>RFL — Revolutionary Football League</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" href="Images/RFL-Logo.webp?v=2" type="image/webp">
+<link rel="icon" href="Images/RFL.webp?v=2" type="image/webp">
 
 <meta property="og:title" content="RFL — Revolutionary Football League" />
-<meta property="og:description" content="The most structured tackle football league on Roblox. Elite systems. Real competition. Season 14 now active." />
-<meta property="og:image" content="https://www.theringer.com/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-content%2Fuploads%2F2026%2F09%2FsheilAFCwest_getty_ringer-scaled.jpg&w=3840&q=75&dpl=1154ebdaa5a7aa054149ba94dcfc2de2145c7a01" />
+<meta property="og:description" content="The most structured tackle football league on Roblox. Elite systems. Real competition. Season 1 now active." />
+<meta property="og:image" content="Images/NFLBackgroundBanner.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="RFL — Revolutionary Football League" />
@@ -20,8 +20,8 @@
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="RFL — Revolutionary Football League" />
-<meta name="twitter:description" content="The most structured tackle football league on Roblox. Elite systems. Real competition. Season 14 now active." />
-<meta name="twitter:image" content="https://www.theringer.com/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-content%2Fuploads%2F2026%2F09%2FsheilAFCwest_getty_ringer-scaled.jpg&w=3840&q=75&dpl=1154ebdaa5a7aa054149ba94dcfc2de2145c7a01" />
+<meta name="twitter:description" content="The most structured tackle football league on Roblox. Elite systems. Real competition. Season 1 now active." />
+<meta name="twitter:image" content="Images/NFLBackgroundBanner.jpg" />
 <meta name="twitter:image:alt" content="RFL — Revolutionary Football League" />
 <style>
 
@@ -258,7 +258,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 }
 .hero-static-bg{
   position:absolute;inset:0;z-index:0;
-  background-image:url('https://www.theringer.com/_next/image?url=https%3A%2F%2Fwp.theringer.com%2Fwp-content%2Fuploads%2F2026%2F09%2FsheilAFCwest_getty_ringer-scaled.jpg&w=3840&q=75&dpl=1154ebdaa5a7aa054149ba94dcfc2de2145c7a01');
+  background-image:url('Images/NFLBackgroundBanner.jpg');
   background-size:cover;background-position:center 22%;
   filter:brightness(.52) saturate(.92);
   transform:scale(1.02);
@@ -697,15 +697,19 @@ h1 em,.nav-brand em{
 
 <!--
   RFL MIGRATION TODOs — search-and-replace these once you have the real values:
-  1. Images/RFL-Logo.webp        -> swap for a proper football-only crest if desired (uploaded logo used for now)
-  2. Images/RFLGraphic3/4/5/6    -> hub card thumbnails still point at old basketball art; drop in football images with these filenames
-  3. https://discord.com/invite/znF9Vnztff   -> your RFL Discord invite
-  4. https://www.roblox.com/groups            -> your RFL Roblox group URL
-  5. https://rpl-applications.vercel.app      -> your RFL applications form URL
-  6. rplmastersheet / rplcapsheet / rpldatabase / rplstandings / rplhistory / rplrulebook / rplbracket .vercel.app
+  1. Images/RFL.webp             -> your RFL logo/crest (now wired up)
+  2. Images/NFLBackgroundBanner.jpg -> your hero banner (now wired up)
+  3. Hub card thumbnails (Salary/Database/Standings/Rulebook) currently reuse
+     Images/NFLBackgroundBanner.jpg since only one banner image was provided —
+     drop in dedicated images with any filenames and update the four <img> tags
+     in the "League Hub" section below.
+  4. https://discord.com/invite/znF9Vnztff   -> your RFL Discord invite
+  5. https://www.roblox.com/groups            -> your RFL Roblox group URL
+  6. https://rpl-applications.vercel.app      -> your RFL applications form URL
+  7. rplmastersheet / rplcapsheet / rpldatabase / rplstandings / rplhistory / rplrulebook / rplbracket .vercel.app
                                               -> the football versions of each tool (currently still the basketball league's apps)
-  7. CHANNEL_ID in the YouTube script below   -> your RFL channel ID
-  8. og:url                                   -> your live domain once deployed
+  8. CHANNEL_ID in the YouTube script below   -> your RFL channel ID
+  9. og:url                                   -> your live domain once deployed
 -->
 
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -713,10 +717,10 @@ h1 em,.nav-brand em{
 <nav id="mainNav">
   <div class="nav-left">
     <div class="nav-logo" onclick="navigate('home')">
-      <img src="Images/RFL-Logo.webp" alt="RFL" style="width:30px;height:30px;object-fit:contain;border-radius:7px;">
+      <img src="Images/RFL.webp" alt="RFL" style="width:30px;height:30px;object-fit:contain;border-radius:7px;">
       <span class="nav-brand">Revolutionary <em>Football League</em></span>
     </div>
-    <span class="nav-pill">Season 14</span>
+    <span class="nav-pill">Season 1</span>
   </div>
   <div class="nav-center">
     <button onclick="navigate('home')"      data-page="home"      class="active">Home</button>
@@ -761,9 +765,9 @@ h1 em,.nav-brand em{
     <div class="hero-top-fade"></div>
     <div class="hero-vignette"></div>
     <div class="hero-content" id="heroContent">
-      <div class="hero-eyebrow">Season 14 — Now Active</div>
+      <div class="hero-eyebrow">Season 1 — Fresh Beginning</div>
       <h1><span class="ln">Revolutionary</span><span class="ln"><em>Football League</em></span></h1>
-      <p class="hero-sub">The most structured tackle football league on Roblox. Elite systems. Real competition.</p>
+      <p class="hero-sub">The most structured tackle football league on Roblox. Elite systems. Real competition. A brand new league, starting from scratch.</p>
       <div class="hero-actions">
         <a href="https://discord.com/invite/znF9Vnztff" target="_blank" rel="noopener" class="btn-primary">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.112 18.1.131 18.116a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
@@ -773,13 +777,13 @@ h1 em,.nav-brand em{
       </div>
       <div class="hero-key-row">
         <div class="hero-key-chip"><span class="dot on"></span>Live Standings</div>
-        <div class="hero-key-chip"><span class="dot" style="background:var(--bl)"></span>Season 14</div>
-        <div class="hero-key-chip"><span class="dot" style="background:var(--am)"></span>30 Franchises</div>
+        <div class="hero-key-chip"><span class="dot" style="background:var(--bl)"></span>Season 1</div>
+        <div class="hero-key-chip"><span class="dot" style="background:var(--am)"></span>Fresh Start</div>
       </div>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="hero-stat-num" data-count="30">0</span><span class="hero-stat-label">Franchises</span></div>
-      <div class="hero-stat"><span class="hero-stat-num">S14</span><span class="hero-stat-label">Current Season</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">S1</span><span class="hero-stat-label">Current Season</span></div>
+      <div class="hero-stat"><span class="hero-stat-num">New</span><span class="hero-stat-label">League</span></div>
       <div class="hero-stat"><span class="hero-stat-num">Live</span><span class="hero-stat-label">Standings</span></div>
     </div>
     <button class="scroll-cue" id="scrollCue" aria-label="Scroll down to see more">
@@ -789,15 +793,15 @@ h1 em,.nav-brand em{
   </div>
 
   <div class="mobile-stats">
-    <div class="mobile-stat"><span class="mobile-stat-num" data-count="30">0</span><span class="mobile-stat-label">Teams</span></div>
-    <div class="mobile-stat"><span class="mobile-stat-num">S14</span><span class="mobile-stat-label">Season</span></div>
+    <div class="mobile-stat"><span class="mobile-stat-num">S1</span><span class="mobile-stat-label">Season</span></div>
+    <div class="mobile-stat"><span class="mobile-stat-num" style="font-size:20px;">New</span><span class="mobile-stat-label">League</span></div>
     <div class="mobile-stat"><span class="mobile-stat-num" style="color:var(--gr);font-size:16px;padding-top:4px;">●</span><span class="mobile-stat-label">Live</span></div>
   </div>
 
   <div class="status-strip reveal">
     <div class="status-item"><div class="status-label">Season Status</div><div class="status-live"><div class="live-dot"></div>Live</div></div>
-    <div class="status-item"><div class="status-label">Active Teams</div><div class="status-value" data-count="30">0</div></div>
-    <div class="status-item"><div class="status-label">Season</div><div class="status-value" data-count="14">0</div></div>
+    <div class="status-item"><div class="status-label">League Stage</div><div class="status-value">Launch</div></div>
+    <div class="status-item"><div class="status-label">Season</div><div class="status-value" data-count="1">0</div></div>
     <div class="status-item"><div class="status-label">Scripts</div><div class="status-value">Gameday</div></div>
   </div>
 
@@ -812,22 +816,22 @@ h1 em,.nav-brand em{
     </div>
     <div class="hub-grid reveal">
       <div class="hub-card" onclick="navigate('salary')" role="button" tabindex="0" aria-label="Salary">
-        <img src="Images/RFLGraphic6.webp" alt="" loading="lazy">
+        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
         <div class="hub-card-overlay"><div class="hub-card-tag">Finance</div><div class="hub-card-name">Salary</div></div>
         <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="hub-card" onclick="navigate('database')" role="button" tabindex="0" aria-label="Team Database">
-        <img src="Images/RFLGraphic5.webp" alt="" loading="lazy">
+        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
         <div class="hub-card-overlay"><div class="hub-card-tag">Leaders</div><div class="hub-card-name">Team Database</div></div>
         <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="hub-card" onclick="navigate('standings')" role="button" tabindex="0" aria-label="Standings">
-        <img src="Images/RFLGraphic3.png" alt="" loading="lazy">
+        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
         <div class="hub-card-overlay"><div class="hub-card-tag">Live</div><div class="hub-card-name">Standings</div></div>
         <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
       <div class="hub-card" onclick="navigate('rules')" role="button" tabindex="0" aria-label="Rulebook">
-        <img src="Images/RFLGraphic4.png" alt="" loading="lazy">
+        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
         <div class="hub-card-overlay"><div class="hub-card-tag">Policies</div><div class="hub-card-name">Rulebook</div></div>
         <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
@@ -960,13 +964,13 @@ h1 em,.nav-brand em{
   <div style="padding:18px 20px 6px;display:flex;align-items:center;justify-content:space-between">
     <div style="font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a78bfa;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:7px">
       <span style="width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;animation:sLivePulse 2s ease infinite"></span>
-      Season 14 Applications
+      Season 1 Applications
     </div>
     <button onclick="closeApplyPopup()" style="background:rgba(255,255,255,.07);border:1px solid var(--glass-border);cursor:pointer;color:var(--tx2);font-size:14px;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;transition:all .13s;flex-shrink:0" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">✕</button>
   </div>
   <div style="padding:6px 20px 20px;display:flex;flex-direction:column;gap:10px">
     <p style="font-size:13px;color:var(--tx2);line-height:1.65;font-weight:400">
-      Interested in joining RFL? Apply to work on staff or own a franchise this season.
+      Interested in joining RFL? Apply to work on staff or own a franchise for our very first season.
     </p>
     <a href="https://rpl-applications.vercel.app" target="_blank" rel="noopener" onclick="closeApplyPopup()" style="
       display:flex;align-items:center;justify-content:space-between;
