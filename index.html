@@ -737,7 +737,7 @@ h1 em,.nav-brand em{
     <button onclick="navigate('standings')" data-page="standings">Standings</button>
     <button onclick="navigate('history')"   data-page="history">History</button>
     <button onclick="comingSoon('Bracket')"   data-page="bracket">Bracket</button>
-    <button onclick="comingSoon('Rulebook')"   data-page="rules">Rulebook</button>
+    <button onclick="navigate('Rulebook')"   data-page="rules">Rulebook</button>
     <button onclick="window.open('https://rpl-applications.vercel.app','_blank')" data-page="applications">Applications</button>
   </div>
   <div class="nav-right">
@@ -759,7 +759,7 @@ h1 em,.nav-brand em{
   <button onclick="navigate('standings');closeMenu()" data-page="standings">Standings</button>
   <button onclick="navigate('history');closeMenu()"   data-page="history">History</button>
   <button onclick="comingSoon('Bracket');closeMenu()"   data-page="bracket">Bracket</button>
-   <button onclick="comingSoon('Rulebook');closeMenu()"   data-page="rules">Rulebook</button>
+   <button onclick="navigate('Rulebook');closeMenu()"   data-page="rules">Rulebook</button>
   <button onclick="window.open('https://rpl-applications.vercel.app','_blank');closeMenu()" data-page="applications">Applications</button>
   <div class="m-divider"></div>
   <button class="m-cta" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank');closeMenu()">Join Discord</button>
@@ -944,7 +944,7 @@ h1 em,.nav-brand em{
 
 <div id="page-rules" class="page iframe-page hidden">
   <div class="iframe-loading" id="loading-rules"><div class="spinner"></div><p>Loading Rulebook…</p></div>
-  <iframe src="" onload="document.getElementById('loading-rules').classList.add('done')" title="Rulebook"></iframe>
+  <iframe src="https://rflrulebook.vercel.app/" onload="document.getElementById('loading-rules').classList.add('done')" title="Rulebook"></iframe>
 </div>
 
 <div id="page-bracket" class="page iframe-page hidden">
