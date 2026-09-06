@@ -119,7 +119,7 @@ h1,h2,h3,.headline{font-family:'Oswald',sans-serif;font-weight:600;letter-spacin
 
 /* ═══════════════ MAIN NAV ═══════════════ */
 .mainnav{
-  position:fixed;top:calc(var(--util-h) + var(--safe-top));left:0;right:0;z-index:210;
+  position:fixed;top:calc(var(--util-h) + var(--ticker-h) + var(--safe-top));left:0;right:0;z-index:210;
   height:var(--nav-h);
   display:flex;align-items:center;justify-content:space-between;
   padding-left:max(18px,var(--safe-left));padding-right:max(18px,var(--safe-right));
@@ -186,13 +186,13 @@ h1,h2,h3,.headline{font-family:'Oswald',sans-serif;font-weight:600;letter-spacin
 
 .mobile-menu{
   position:fixed;z-index:205;left:0;right:0;
-  top:calc(var(--util-h) + var(--nav-h) + var(--safe-top));
+  top:calc(var(--util-h) + var(--ticker-h) + var(--nav-h) + var(--safe-top));
   background:var(--surface);border-bottom:1px solid var(--line);
   padding:6px 10px calc(18px + var(--safe-bottom));
   flex-direction:column;gap:1px;display:flex;
   transform:translateY(-8px);opacity:0;pointer-events:none;
   transition:opacity .2s ease,transform .2s ease;
-  max-height:calc(100svh - var(--util-h) - var(--nav-h) - var(--safe-top));overflow-y:auto;
+  max-height:calc(100svh - var(--util-h) - var(--ticker-h) - var(--nav-h) - var(--safe-top));overflow-y:auto;
   box-shadow:0 16px 30px rgba(10,20,40,.14);
 }
 .mobile-menu.open{opacity:1;transform:none;pointer-events:auto}
@@ -212,29 +212,38 @@ h1,h2,h3,.headline{font-family:'Oswald',sans-serif;font-weight:600;letter-spacin
 
 /* ═══════════════ HUB TICKER (scoreboard-style) ═══════════════ */
 .hub-ticker{
-  position:sticky;top:0;z-index:150;
+  position:fixed;top:calc(var(--util-h) + var(--safe-top));left:0;right:0;z-index:212;
   display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;
-  background:var(--navy-deep);border-bottom:2px solid var(--red);
+  background:linear-gradient(180deg,#0d3fc4,#0a35a8);
   height:var(--ticker-h);
+  transition:transform .3s var(--ease);
 }
 .hub-ticker::-webkit-scrollbar{display:none}
+.hub-ticker.nav-hidden{transform:translateY(-140%)}
+.tk-brand{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px;
+  padding:4px 16px;flex-shrink:0;border-right:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);
+}
+.tk-brand b{font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:.05em;color:#fff}
+.tk-brand span{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#bcd0ff}
 .tk-item{
   display:flex;align-items:center;gap:9px;flex-shrink:0;
-  padding:0 16px;border-right:1px solid rgba(255,255,255,.08);
+  padding:0 16px;border-right:1px solid rgba(255,255,255,.16);
   background:none;border-top:none;border-bottom:none;border-left:none;cursor:pointer;
   -webkit-tap-highlight-color:transparent;transition:background .15s;
 }
-.tk-item:hover{background:rgba(255,255,255,.06)}
-.tk-dot{width:6px;height:6px;border-radius:50%;background:var(--steel);flex-shrink:0}
+.tk-item:hover{background:rgba(255,255,255,.1)}
+.tk-dot{width:6px;height:6px;border-radius:50%;background:#bcd0ff;flex-shrink:0}
 .tk-dot.live{background:#3ecf6e;box-shadow:0 0 0 0 rgba(62,207,110,.5);animation:tkPulse 1.8s ease infinite}
 .tk-dot.warn{background:var(--gold)}
-.tk-dot.soon{background:#6b7690}
+.tk-dot.soon{background:#7f96d6}
 @keyframes tkPulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.5)}70%{box-shadow:0 0 0 6px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
-.tk-label{font-family:'Oswald',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#eef1f6;white-space:nowrap}
-.tk-meta{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8592ab;white-space:nowrap;font-family:'JetBrains Mono',monospace}
+.tk-label{font-family:'Oswald',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#fff;white-space:nowrap}
+.tk-meta{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#bcd0ff;white-space:nowrap;font-family:'JetBrains Mono',monospace}
 
 /* ═══════════════ SPACER for fixed header ═══════════════ */
-.header-spacer{height:calc(var(--util-h) + var(--nav-h) + var(--safe-top))}
+.header-spacer{height:calc(var(--util-h) + var(--ticker-h) + var(--nav-h) + var(--safe-top))}
 
 /* ═══════════════ KICKOFF PROMO BANNER ═══════════════ */
 .kickoff-banner{
@@ -389,7 +398,7 @@ footer{background:var(--navy-deep);color:var(--on-navy-dim);padding:40px max(28p
 .page.hidden{display:none!important}
 .page-fade{animation:pageFadeIn .4s var(--ease) both}
 @keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.iframe-page{position:fixed;top:calc(var(--util-h) + var(--nav-h) + var(--safe-top));left:0;right:0;bottom:0;z-index:50}
+.iframe-page{position:fixed;top:calc(var(--util-h) + var(--ticker-h) + var(--nav-h) + var(--safe-top));left:0;right:0;bottom:0;z-index:50}
 .iframe-page iframe{width:100%;height:100%;border:none;display:block}
 .iframe-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);gap:14px;z-index:1;transition:opacity .3s ease}
 .iframe-loading.done{opacity:0;pointer-events:none}
@@ -474,6 +483,38 @@ footer{background:var(--navy-deep);color:var(--on-navy-dim);padding:40px max(28p
   </div>
 </div>
 
+<div class="hub-ticker" id="hubTicker">
+  <div class="tk-brand"><b>RFL</b><span>Season 1</span></div>
+  <button class="tk-item" onclick="navigate('standings')">
+    <div class="tk-dot live"></div>
+    <div><div class="tk-label">STANDINGS</div><div class="tk-meta">Live</div></div>
+  </button>
+  <button class="tk-item" onclick="navigate('history')">
+    <div class="tk-dot"></div>
+    <div><div class="tk-label">HISTORY</div><div class="tk-meta">Match Log</div></div>
+  </button>
+  <button class="tk-item" onclick="navigate('rules')">
+    <div class="tk-dot warn"></div>
+    <div><div class="tk-label">RULEBOOK</div><div class="tk-meta">Official</div></div>
+  </button>
+  <button class="tk-item" onclick="comingSoon('Bracket')">
+    <div class="tk-dot soon"></div>
+    <div><div class="tk-label">BRACKET</div><div class="tk-meta">Coming Soon</div></div>
+  </button>
+  <button class="tk-item" onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">
+    <div class="tk-dot soon"></div>
+    <div><div class="tk-label">YOUTUBE</div><div class="tk-meta">Watch</div></div>
+  </button>
+  <button class="tk-item" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">
+    <div class="tk-dot live"></div>
+    <div><div class="tk-label">DISCORD</div><div class="tk-meta">Join Now</div></div>
+  </button>
+  <button class="tk-item" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
+    <div class="tk-dot" style="background:#fff"></div>
+    <div><div class="tk-label">APPLY</div><div class="tk-meta">Front Office</div></div>
+  </button>
+</div>
+
 <nav id="mainNav" class="mainnav">
   <div class="nav-left">
     <div class="nav-logo" onclick="navigate('home')">
@@ -548,37 +589,6 @@ footer{background:var(--navy-deep);color:var(--on-navy-dim);padding:40px max(28p
 <div class="header-spacer"></div>
 
 <div id="page-home" class="page">
-
-  <div class="hub-ticker" id="hubTicker">
-    <button class="tk-item" onclick="navigate('standings')">
-      <div class="tk-dot live"></div>
-      <div><div class="tk-label">STANDINGS</div><div class="tk-meta">Live</div></div>
-    </button>
-    <button class="tk-item" onclick="navigate('history')">
-      <div class="tk-dot"></div>
-      <div><div class="tk-label">HISTORY</div><div class="tk-meta">Match Log</div></div>
-    </button>
-    <button class="tk-item" onclick="navigate('rules')">
-      <div class="tk-dot warn"></div>
-      <div><div class="tk-label">RULEBOOK</div><div class="tk-meta">Official</div></div>
-    </button>
-    <button class="tk-item" onclick="comingSoon('Bracket')">
-      <div class="tk-dot soon"></div>
-      <div><div class="tk-label">BRACKET</div><div class="tk-meta">Coming Soon</div></div>
-    </button>
-    <button class="tk-item" onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">
-      <div class="tk-dot soon"></div>
-      <div><div class="tk-label">YOUTUBE</div><div class="tk-meta">Watch</div></div>
-    </button>
-    <button class="tk-item" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">
-      <div class="tk-dot live"></div>
-      <div><div class="tk-label">DISCORD</div><div class="tk-meta">Join Now</div></div>
-    </button>
-    <button class="tk-item" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
-      <div class="tk-dot" style="background:var(--red)"></div>
-      <div><div class="tk-label">APPLY</div><div class="tk-meta">Front Office</div></div>
-    </button>
-  </div>
 
   <div class="kickoff-banner reveal">
     <div class="kb-left">
@@ -877,12 +887,20 @@ function scrollHub(dir){
 
 const navEl=document.getElementById('mainNav');
 const utilEl=document.getElementById('utilBar');
+const tickerEl=document.getElementById('hubTicker');
 let lastScrollY=window.scrollY;
 window.addEventListener('scroll',()=>{
   const y=window.scrollY;
   navEl.classList.toggle('scrolled',y>20);
-  if(y>140&&y>lastScrollY){navEl.classList.add('nav-hidden');utilEl.style.transform='translateY(-140%)'}
-  else{navEl.classList.remove('nav-hidden');utilEl.style.transform=''}
+  if(y>140&&y>lastScrollY){
+    navEl.classList.add('nav-hidden');
+    tickerEl.classList.add('nav-hidden');
+    utilEl.style.transform='translateY(-140%)';
+  }else{
+    navEl.classList.remove('nav-hidden');
+    tickerEl.classList.remove('nav-hidden');
+    utilEl.style.transform='';
+  }
   lastScrollY=y;
 
   const doc=document.documentElement;
