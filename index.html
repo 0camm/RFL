@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0c0c16">
+<meta name="theme-color" content="#0a1f44">
 <title>RFL — Revolutionary Football League</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" href="Images/RFL.webp?v=2" type="image/webp">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="Images/RFL.webp?v=3" type="image/webp">
 
 <meta property="og:title" content="RFL — Revolutionary Football League" />
 <meta property="og:description" content="The most structured tackle football league on Roblox. Elite systems. Real competition. Season 1 now active." />
@@ -14,7 +14,7 @@
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="RFL — Revolutionary Football League" />
-<!-- TODO: update to your live RFL domain once deployed --><meta property="og:url" content="https://rfl.pages.dev/" />
+<meta property="og:url" content="https://rfl.pages.dev/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="RFL — Revolutionary Football League" />
 
@@ -23,924 +23,513 @@
 <meta name="twitter:description" content="The most structured tackle football league on Roblox. Elite systems. Real competition. Season 1 now active." />
 <meta name="twitter:image" content="Images/NFLBackgroundBanner.jpg" />
 <meta name="twitter:image:alt" content="RFL — Revolutionary Football League" />
+
 <style>
-
+/* ══════════════════════════════════════════════════════════
+   RFL — DESIGN SYSTEM
+   Navy / Steel / Red — professional league broadcast identity
+   Headline face: Oswald (condensed, athletic)
+   Body face: Inter
+   Data/mono face: JetBrains Mono
+══════════════════════════════════════════════════════════ */
 :root{
-  --red:#d50a0a;--red-a:.08;
-  --red-dim:rgba(213,10,10,.08);--red-mid:rgba(213,10,10,.22);--red-edge:rgba(213,10,10,.5);
-  --red-glow:rgba(213,10,10,.45);
-  --bg:#f2f3f5;--s1:#ffffff;--s2:#eef0f2;--s3:#e6e8eb;--s4:#dcdfe3;
-  --surface:var(--s1);--surface2:var(--s2);
-  --b:rgba(15,17,20,.10);--b2:rgba(15,17,20,.06);
-  --border:var(--b);--border2:var(--b2);
-  --mu:#666b74;--mu2:#989ca4;
-  --muted:var(--mu);--muted2:var(--mu2);
-  --tx:#101216;--tx2:#3d4148;
-  --text:var(--tx);
-  --gr:#0e8a3e;--gr-d:rgba(14,138,62,.08);
-  --am:#b5760a;--am-d:rgba(181,118,10,.08);
-  --bl:#0a5cb5;--bl-d:rgba(10,92,181,.08);
-  --win:#0e8a3e;--lose:#d5163a;
-  --green:#0e8a3e;--gold:#a3781f;
+  --navy:#0a1f44;
+  --navy-deep:#061530;
+  --navy-mid:#12305e;
+  --steel:#4d6485;
+  --red:#d3122a;
+  --red-deep:#a20d21;
+  --gold:#c9a94a;
 
-  --glass-bg:rgba(255,255,255,.86);
-  --glass-bg-soft:rgba(255,255,255,.72);
-  --glass-border:rgba(15,17,20,.08);
-  --glass-hi:rgba(255,255,255,.5);
-  --glass-blur:18px;
-  --glass-shadow:0 20px 60px rgba(15,17,20,.10), inset 0 1px 0 rgba(255,255,255,.6);
+  --bg:#f4f5f7;
+  --surface:#ffffff;
+  --surface-2:#eceef2;
+  --surface-3:#e2e5eb;
 
-  --nav-h:60px;
+  --line:rgba(10,31,68,.12);
+  --line-soft:rgba(10,31,68,.07);
+
+  --ink:#0c1220;
+  --ink-2:#454c5c;
+  --ink-3:#767e8f;
+
+  --on-navy:#f2f4f8;
+  --on-navy-dim:#9fb0cc;
+
+  --win:#1c7a3e;
+  --live:#d3122a;
+
+  --nav-h:56px;
+  --util-h:34px;
+  --ticker-h:40px;
   --safe-top:env(safe-area-inset-top,0px);
   --safe-bottom:env(safe-area-inset-bottom,0px);
   --safe-left:env(safe-area-inset-left,0px);
   --safe-right:env(safe-area-inset-right,0px);
-  --ease:cubic-bezier(.16,.84,.44,1);
-  --ease-soft:cubic-bezier(.4,0,.2,1);
+  --ease:cubic-bezier(.2,.8,.2,1);
   --mx:50%;--my:50%;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);
-  color:var(--tx);
-  font-family:'Inter',sans-serif;font-size:14px;
+  color:var(--ink);
+  font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.5;
   min-height:100vh;-webkit-font-smoothing:antialiased;
-  width:100%;max-width:100vw;overflow-x:hidden;
-  position:relative;
+  width:100%;max-width:100vw;overflow-x:hidden;position:relative;
 }
-:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:4px}
-button:focus-visible,a:focus-visible{outline-offset:3px}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--red);outline-offset:2px;border-radius:3px}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
 
-::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar{width:9px;height:9px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--mu2);border-radius:4px}
-::-webkit-scrollbar-thumb:hover{background:var(--mu)}
-*{scrollbar-width:thin;scrollbar-color:var(--mu2) transparent}
+::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:8px;border:2px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--steel)}
+::selection{background:rgba(211,18,42,.22);color:var(--ink)}
 
-.scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--red),#c4b5fd);width:0%;z-index:300;transition:width .1s linear;box-shadow:0 0 8px var(--red-glow)}
+.scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--red);width:0%;z-index:300;transition:width .1s linear}
 
-/* ═══════════════ RFL TICKER (top strip) ═══════════════ */
-.rfl-ticker{
-  position:fixed;top:0;left:0;right:0;z-index:210;
+h1,h2,h3,.headline{font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.01em;text-transform:uppercase}
+
+/* ═══════════════ UTILITY BAR ═══════════════ */
+.util-bar{
+  position:fixed;top:0;left:0;right:0;z-index:220;
+  height:var(--util-h);padding-top:var(--safe-top);
+  background:var(--navy-deep);
+  display:flex;align-items:center;justify-content:space-between;
+  padding-left:max(20px,var(--safe-left));padding-right:max(20px,var(--safe-right));
+  gap:16px;
+}
+.util-left{display:flex;align-items:center;gap:8px;color:var(--on-navy);font-size:11.5px;font-weight:700;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.util-left b{color:var(--red)}
+.util-right{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.util-link{font-size:11px;font-weight:600;color:var(--on-navy-dim);text-decoration:none;letter-spacing:.02em;transition:color .15s;white-space:nowrap}
+.util-link:hover{color:#fff}
+.util-cta{
+  background:var(--red);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  border:none;border-radius:3px;padding:5px 11px;cursor:pointer;white-space:nowrap;transition:background .15s;
+}
+.util-cta:hover{background:var(--red-deep)}
+@media(max-width:760px){.util-right .util-link{display:none}}
+@media(max-width:520px){.util-left span.long{display:none}}
+
+/* ═══════════════ MAIN NAV ═══════════════ */
+.mainnav{
+  position:fixed;top:calc(var(--util-h) + var(--safe-top));left:0;right:0;z-index:210;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding-left:max(18px,var(--safe-left));padding-right:max(18px,var(--safe-right));
+  background:var(--surface);border-bottom:1px solid var(--line);
+  transition:box-shadow .25s,transform .3s var(--ease);
+}
+.mainnav.scrolled{box-shadow:0 6px 18px rgba(10,20,40,.08)}
+.mainnav.nav-hidden{transform:translateY(-140%)}
+.nav-left{display:flex;align-items:center;gap:26px;min-width:0}
+.nav-logo{display:flex;align-items:center;gap:9px;cursor:pointer;flex-shrink:0;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.nav-logo img{width:32px;height:32px;object-fit:contain}
+.nav-wordmark{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;letter-spacing:.04em;color:var(--navy);line-height:1}
+.nav-wordmark em{color:var(--red);font-style:normal}
+.nav-menu{display:flex;align-items:center;gap:2px}
+.nav-dd{position:relative}
+.nav-dd>button{
+  display:flex;align-items:center;gap:5px;background:none;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+  color:var(--ink);padding:10px 11px;height:var(--nav-h)
+}
+.nav-dd>button svg{width:8px;height:8px;stroke:var(--ink-3);transition:transform .15s}
+.nav-dd:hover>button,.nav-dd>button:focus-visible{color:var(--red)}
+.nav-dd:hover>button svg{transform:rotate(180deg)}
+.nav-panel{
+  position:absolute;top:100%;left:0;transform:translateY(2px);
+  background:#fff;border:1px solid var(--line);border-radius:8px;
+  box-shadow:0 18px 40px rgba(10,20,40,.16);padding:6px;min-width:200px;
+  opacity:0;pointer-events:none;transition:opacity .14s,transform .14s;
+}
+.nav-dd:hover .nav-panel{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nav-panel button{
+  display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);
+  padding:9px 12px;border-radius:6px;transition:background .12s,color .12s;
+}
+.nav-panel button:hover{background:var(--surface-2);color:var(--navy)}
+.nav-kickoff{
+  font-family:'Oswald',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.04em;
+  color:var(--navy);cursor:pointer;padding:6px 12px;border:1px solid var(--line);border-radius:20px;
+  background:var(--surface-2);white-space:nowrap;transition:background .15s,color .15s;
+}
+.nav-kickoff:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.nav-textlink{font-size:12px;font-weight:600;color:var(--ink-2);text-decoration:none;white-space:nowrap;transition:color .15s}
+.nav-textlink:hover{color:var(--navy)}
+.nav-signin{
+  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:700;color:#fff;
+  background:var(--navy);border:none;border-radius:6px;padding:8px 14px;cursor:pointer;white-space:nowrap;
+  transition:background .15s;
+}
+.nav-signin:hover{background:var(--navy-mid)}
+.nav-hamburger{display:none}
+@media(max-width:1060px){
+  .nav-menu,.nav-kickoff,.nav-right .nav-textlink{display:none}
+  .nav-hamburger{
+    display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;
+    width:40px;height:40px;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .nav-hamburger span{display:block;width:19px;height:2px;background:var(--navy);border-radius:2px;transition:transform .22s var(--ease),opacity .22s}
+  .nav-hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-hamburger.open span:nth-child(2){opacity:0}
+  .nav-hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+}
+
+.mobile-menu{
+  position:fixed;z-index:205;left:0;right:0;
+  top:calc(var(--util-h) + var(--nav-h) + var(--safe-top));
+  background:var(--surface);border-bottom:1px solid var(--line);
+  padding:6px 10px calc(18px + var(--safe-bottom));
+  flex-direction:column;gap:1px;display:flex;
+  transform:translateY(-8px);opacity:0;pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;
+  max-height:calc(100svh - var(--util-h) - var(--nav-h) - var(--safe-top));overflow-y:auto;
+  box-shadow:0 16px 30px rgba(10,20,40,.14);
+}
+.mobile-menu.open{opacity:1;transform:none;pointer-events:auto}
+.mobile-menu button{
+  background:none;border:none;color:var(--ink);text-align:left;
+  font-family:'Inter',sans-serif;font-size:15.5px;font-weight:600;
+  padding:0 14px;border-radius:8px;cursor:pointer;min-height:50px;display:flex;align-items:center;
+  border-bottom:1px solid var(--line-soft);
+}
+.mobile-menu button:hover{background:var(--surface-2)}
+.mobile-menu button.active{color:var(--red)}
+.mobile-menu .m-divider{height:1px;background:var(--line);margin:8px 4px}
+.mobile-menu .m-cta{
+  background:var(--red)!important;color:#fff!important;justify-content:center!important;
+  font-weight:700!important;margin-top:6px;font-size:15px!important;border-radius:8px;border-bottom:none!important;
+}
+
+/* ═══════════════ HUB TICKER (scoreboard-style) ═══════════════ */
+.hub-ticker{
+  position:sticky;top:0;z-index:150;
   display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;
-  background:#0c0d10;border-bottom:3px solid var(--red);
-  height:44px;padding-top:var(--safe-top);
+  background:var(--navy-deep);border-bottom:2px solid var(--red);
+  height:var(--ticker-h);
 }
-.rfl-ticker::-webkit-scrollbar{display:none}
-.rfl-tk-brand{
-  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
-  gap:1px;padding:4px 16px;flex-shrink:0;border-right:1px solid rgba(255,255,255,.14);
-  background:rgba(213,10,10,.14);
-}
-.rfl-tk-brand b{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.06em;color:#fff}
-.rfl-tk-brand span{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--red2,#ff5b5b)}
-.rfl-tk-item{
-  display:flex;align-items:center;gap:8px;
-  padding:0 16px;flex-shrink:0;border-right:1px solid rgba(255,255,255,.08);
+.hub-ticker::-webkit-scrollbar{display:none}
+.tk-item{
+  display:flex;align-items:center;gap:9px;flex-shrink:0;
+  padding:0 16px;border-right:1px solid rgba(255,255,255,.08);
   background:none;border-top:none;border-bottom:none;border-left:none;cursor:pointer;
   -webkit-tap-highlight-color:transparent;transition:background .15s;
 }
-.rfl-tk-item:hover{background:rgba(255,255,255,.06)}
-.rfl-tk-dot{width:6px;height:6px;border-radius:50%;background:#3de87a;flex-shrink:0}
-.rfl-tk-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;color:#e8e9ec;white-space:nowrap}
-.rfl-tk-meta{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#7b8089;white-space:nowrap}
+.tk-item:hover{background:rgba(255,255,255,.06)}
+.tk-dot{width:6px;height:6px;border-radius:50%;background:var(--steel);flex-shrink:0}
+.tk-dot.live{background:#3ecf6e;box-shadow:0 0 0 0 rgba(62,207,110,.5);animation:tkPulse 1.8s ease infinite}
+.tk-dot.warn{background:var(--gold)}
+.tk-dot.soon{background:#6b7690}
+@keyframes tkPulse{0%{box-shadow:0 0 0 0 rgba(62,207,110,.5)}70%{box-shadow:0 0 0 6px rgba(62,207,110,0)}100%{box-shadow:0 0 0 0 rgba(62,207,110,0)}}
+.tk-label{font-family:'Oswald',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#eef1f6;white-space:nowrap}
+.tk-meta{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8592ab;white-space:nowrap;font-family:'JetBrains Mono',monospace}
 
-/* ═══════════════ RFL MAIN NAV ═══════════════ */
-.rfl-nav{
-  position:fixed;top:44px;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:20px;padding:12px max(20px,var(--safe-right)) 12px max(20px,var(--safe-left));
-  background:var(--s1);border-bottom:1px solid var(--b);
-  transition:box-shadow .3s,transform .3s var(--ease-soft);
-}
-.rfl-nav.scrolled{box-shadow:0 4px 20px rgba(15,17,20,.08)}
-.rfl-nav.nav-hidden{transform:translateY(-100%)}
-.rfl-nav-left{display:flex;align-items:center;gap:28px;flex-wrap:nowrap}
-.rfl-nav-logo{display:flex;align-items:center;gap:0;cursor:pointer;flex-shrink:0}
-.rfl-nav-logo img{width:34px;height:34px;object-fit:contain;border-radius:6px}
-.rfl-nav-menu{display:flex;align-items:center;gap:22px}
-.rfl-nav-dd{position:relative}
-.rfl-nav-dd>span{
-  display:flex;align-items:center;gap:5px;cursor:pointer;
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.02em;
-  color:var(--tx);padding:6px 0;
-}
-.rfl-nav-dd>span svg{width:9px;height:9px;transition:transform .15s}
-.rfl-nav-dd:hover>span svg{transform:rotate(180deg)}
-.rfl-nav-dd:hover>span{color:var(--red)}
-.rfl-nav-panel{
-  position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(4px);
-  background:#fff;border:1px solid var(--b);border-radius:10px;
-  box-shadow:0 16px 40px rgba(15,17,20,.16);
-  padding:8px;min-width:190px;
-  opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;
-}
-.rfl-nav-dd:hover .rfl-nav-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.rfl-nav-panel button{
-  display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--tx2);
-  padding:9px 12px;border-radius:6px;transition:background .12s,color .12s;
-}
-.rfl-nav-panel button:hover{background:var(--s2);color:var(--tx)}
-.rfl-nav-kickoff{
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.02em;
-  color:var(--red);cursor:pointer;padding-left:20px;border-left:1px solid var(--b);
-}
-.rfl-nav-right{display:flex;align-items:center;gap:22px;flex-shrink:0}
-.rfl-nav-textlink{
-  display:flex;align-items:center;gap:4px;
-  font-size:12.5px;font-weight:600;color:var(--tx2);cursor:pointer;white-space:nowrap;
-}
-.rfl-nav-textlink svg{width:9px;height:9px}
-.rfl-nav-textlink:hover{color:var(--tx)}
-.rfl-nav-signin{
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--tx);
-  background:none;border:none;cursor:pointer;white-space:nowrap;
-}
-.rfl-nav-signin:hover{color:var(--red)}
-.rfl-nav-hamburger{display:none}
-@media(max-width:1080px){
-  .rfl-nav-menu,.rfl-nav-kickoff,.rfl-nav-right .rfl-nav-textlink{display:none}
-  .rfl-nav-hamburger{
-    display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;
-    width:40px;height:40px;align-items:center;justify-content:center;
-  }
-  .rfl-nav-hamburger span{display:block;width:20px;height:2px;background:var(--tx);border-radius:2px}
-}
+/* ═══════════════ SPACER for fixed header ═══════════════ */
+.header-spacer{height:calc(var(--util-h) + var(--nav-h) + var(--safe-top))}
 
-/* ═══════════════ PROMO BANNER ═══════════════ */
-.rfl-promo{
-  margin-top:104px;
+/* ═══════════════ KICKOFF PROMO BANNER ═══════════════ */
+.kickoff-banner{
   position:relative;overflow:hidden;
   background:
-    linear-gradient(100deg,rgba(4,4,6,.92) 0%,rgba(4,4,6,.55) 45%,rgba(213,10,10,.28) 100%),
-    #0c0d10;
+    linear-gradient(100deg,rgba(6,15,32,.94) 0%,rgba(6,15,32,.72) 45%,rgba(211,18,42,.34) 100%),
+    var(--navy-deep);
   display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
-  padding:22px 28px;
+  padding:20px 28px;
 }
-.rfl-promo-left{display:flex;align-items:center;gap:18px}
-.rfl-promo-logo{width:52px;height:52px;object-fit:contain;border-radius:10px;flex-shrink:0;background:rgba(255,255,255,.08);padding:6px}
-.rfl-promo-eyebrow{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.1em;color:#ff5b5b}
-.rfl-promo-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.03em;color:#fff;line-height:1}
-.rfl-promo-cta{
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.02em;
-  color:var(--tx);background:#fff;border:none;border-radius:8px;
-  padding:14px 26px;cursor:pointer;white-space:nowrap;transition:transform .12s,opacity .15s;
+.kb-left{display:flex;align-items:center;gap:16px;min-width:0}
+.kb-logo{width:46px;height:46px;object-fit:contain;border-radius:8px;flex-shrink:0;background:rgba(255,255,255,.08);padding:5px}
+.kb-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#ff6b6b;margin-bottom:3px}
+.kb-title{font-family:'Oswald',sans-serif;font-size:23px;letter-spacing:.02em;color:#fff;line-height:1.1}
+.kb-cta{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:.02em;
+  color:var(--navy);background:#fff;border:none;border-radius:6px;
+  padding:13px 24px;cursor:pointer;white-space:nowrap;transition:transform .12s,opacity .15s;flex-shrink:0;
 }
-.rfl-promo-cta:hover{opacity:.88;transform:translateY(-1px)}
+.kb-cta:hover{opacity:.9;transform:translateY(-1px)}
 
 /* ═══════════════ FEATURE: PHOTO GRID + SIDEBAR ═══════════════ */
-.rfl-feature{display:grid;grid-template-columns:1fr 380px;gap:0;align-items:stretch}
-.rfl-photogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--b)}
-.rfl-photogrid a{position:relative;display:block;overflow:hidden;aspect-ratio:3/4}
-.rfl-photogrid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s var(--ease)}
+.rfl-feature{display:grid;grid-template-columns:1fr 360px;gap:0;align-items:stretch;background:var(--surface)}
+.rfl-photogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line)}
+.rfl-photogrid a{position:relative;display:block;overflow:hidden;aspect-ratio:3/4;text-decoration:none}
+.rfl-photogrid img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02);transition:transform .4s var(--ease)}
 .rfl-photogrid a:hover img{transform:scale(1.05)}
 .rfl-photogrid span{
   position:absolute;left:0;right:0;bottom:0;padding:14px 12px 10px;color:#fff;
-  font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.03em;
-  background:linear-gradient(0deg,rgba(0,0,0,.78),transparent);
+  font-family:'Oswald',sans-serif;font-size:14.5px;letter-spacing:.03em;text-transform:uppercase;
+  background:linear-gradient(0deg,rgba(6,15,32,.86),transparent);
 }
 @media(max-width:900px){.rfl-feature{grid-template-columns:1fr}.rfl-photogrid{grid-template-columns:repeat(2,1fr)}}
 
-.rfl-sidebar{background:var(--s1);border-left:1px solid var(--b);display:flex;flex-direction:column}
-.rfl-sb-tabs{display:flex;border-bottom:2px solid var(--b);padding:14px 18px 0}
-.rfl-sb-tab{
-  font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.04em;
-  color:var(--mu);padding:0 0 12px;margin-right:22px;cursor:pointer;
-  border-bottom:3px solid transparent;
+.rfl-sidebar{background:var(--surface);border-left:1px solid var(--line);display:flex;flex-direction:column}
+.sb-tabs{display:flex;border-bottom:2px solid var(--line);padding:16px 18px 0}
+.sb-tab{
+  font-family:'Oswald',sans-serif;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink-3);padding:0 0 12px;margin-right:24px;cursor:pointer;
+  border-bottom:3px solid transparent;background:none;border-top:none;border-left:none;border-right:none;
 }
-.rfl-sb-tab.active{color:var(--tx);border-color:var(--red)}
-.rfl-sb-list{display:flex;flex-direction:column}
-.rfl-sb-row{
-  display:flex;align-items:flex-start;gap:10px;padding:14px 18px;
-  border-bottom:1px solid var(--b2);cursor:pointer;transition:background .12s;
+.sb-tab.active{color:var(--navy);border-color:var(--red)}
+.sb-list{display:flex;flex-direction:column}
+.sb-row{
+  display:flex;align-items:flex-start;gap:11px;padding:15px 18px;
+  border-bottom:1px solid var(--line-soft);cursor:pointer;transition:background .12s;
+  background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;
 }
-.rfl-sb-row:hover{background:var(--s2)}
-.rfl-sb-row-icon{width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--mu)}
-.rfl-sb-row-text{font-size:13.5px;font-weight:700;line-height:1.35;color:var(--tx)}
+.sb-row:hover{background:var(--surface-2)}
+.sb-row-icon{width:17px;height:17px;flex-shrink:0;margin-top:2px;color:var(--red)}
+.sb-row-text{font-size:13px;font-weight:600;line-height:1.4;color:var(--ink)}
+.sb-row-text b{display:block;font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:var(--navy);margin-bottom:2px}
 
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:var(--nav-h);
-  padding-top:var(--safe-top);
-  display:flex;align-items:center;justify-content:space-between;
-  padding-left:max(20px,var(--safe-left));
-  padding-right:max(20px,var(--safe-right));
-  background:var(--s1);
-  border-bottom:1px solid var(--b);
-  transition:box-shadow .3s,transform .3s var(--ease-soft);
-}
-nav.scrolled{box-shadow:0 4px 20px rgba(15,17,20,.08)}
-nav.nav-hidden{transform:translateY(-100%)}
-.nav-left{display:flex;align-items:center;gap:12px}
-.nav-logo{
-  display:flex;align-items:center;gap:10px;
-  cursor:pointer;text-decoration:none;
-  -webkit-tap-highlight-color:transparent;
-}
-.nav-logo img{transition:transform .35s var(--ease);border:1px solid var(--b)}
-.nav-logo:hover img{transform:rotate(-8deg) scale(1.06)}
-.nav-brand{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:17px;letter-spacing:.08em;color:var(--tx);white-space:nowrap;
-}
-.nav-brand em{color:var(--red);font-style:normal}
-.nav-pill{
-  font-size:10px;font-weight:700;letter-spacing:.08em;
-  color:#fff;text-transform:uppercase;
-  background:var(--red);border:none;border-radius:20px;padding:3px 9px;
-  position:relative;
-}
-.nav-center{
-  display:flex;align-items:center;gap:1px;
-  position:absolute;left:50%;transform:translateX(-50%);
-  background:var(--s2);
-  border:1px solid var(--b);
-  border-radius:11px;padding:3px;
-}
-.nav-center button{
-  position:relative;
-  background:none;border:none;color:var(--tx2);
-  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;
-  padding:6px 12px;border-radius:8px;cursor:pointer;letter-spacing:.01em;
-  transition:color .16s,background .16s;white-space:nowrap;
-  -webkit-tap-highlight-color:transparent;
-}
-.nav-center button::after{content:'';position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;background:var(--red);transform:scaleX(0);transform-origin:center;transition:transform .25s var(--ease)}
-.nav-center button:hover{color:var(--tx);background:rgba(15,17,20,.05)}
-.nav-center button.active{color:#fff;background:var(--red)}
-.nav-center button.active::after{transform:scaleX(0)}
-.nav-right{display:flex;align-items:center;gap:10px}
-.nav-cta{
-  display:flex;align-items:center;gap:6px;
-  font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  color:#fff;background:var(--red);border:1px solid var(--red);border-radius:8px;
-  padding:8px 16px;cursor:pointer;position:relative;overflow:hidden;
-  transition:opacity .16s,box-shadow .16s,transform .12s;
-  -webkit-tap-highlight-color:transparent;
-}
-.nav-cta:hover{opacity:.88;box-shadow:0 4px 24px rgba(213,10,10,.35);transform:translateY(-1px)}
-.nav-cta:active{transform:translateY(0) scale(.97)}
-.nav-secondary{
-  display:flex;align-items:center;gap:6px;
-  background:var(--s2);border:1px solid var(--b);border-radius:8px;
-  color:var(--tx2);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-  padding:8px 14px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;
-}
-.nav-secondary:hover{border-color:var(--red-edge);color:var(--tx)}
-.nav-hamburger{
-  display:none;flex-direction:column;gap:5px;
-  cursor:pointer;background:none;border:none;
-  width:44px;height:44px;
-  align-items:center;justify-content:center;border-radius:8px;
-  -webkit-tap-highlight-color:transparent;transition:background .16s;
-}
-.nav-hamburger:hover{background:rgba(15,17,20,.06)}
-.nav-hamburger span{
-  display:block;width:20px;height:2px;
-  background:var(--tx2);border-radius:2px;
-  transition:transform .24s var(--ease-soft),opacity .24s,background .16s;
-  transform-origin:center;
-}
-.nav-hamburger.open span{background:var(--tx)}
-.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* ═══════════════ SECTIONS ═══════════════ */
+.section{padding:44px 28px;position:relative}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.section-title{font-family:'Oswald',sans-serif;font-size:clamp(21px,3vw,26px);letter-spacing:.03em;color:var(--navy);text-transform:uppercase}
+.section-nav{display:flex;align-items:center;gap:10px}
+.sn-count{font-size:11.5px;color:var(--ink-3);font-family:'JetBrains Mono',monospace}
+.sn-btn{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-2);transition:background .15s,color .15s}
+.sn-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
 
-.mobile-menu{
-  position:fixed;
-  top:calc(var(--nav-h) + var(--safe-top));left:0;right:0;z-index:190;
-  background:var(--s1);
-  border-bottom:1px solid var(--b);
-  padding:8px 12px calc(16px + var(--safe-bottom));
-  flex-direction:column;gap:2px;
-  transform:translateY(-8px);opacity:0;pointer-events:none;
-  transition:opacity .22s ease,transform .22s ease;display:flex;
-  max-height:calc(100svh - var(--nav-h) - var(--safe-top));overflow-y:auto;
-  box-shadow:0 12px 30px rgba(15,17,20,.12);
-}
-.mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:auto}
-.mobile-menu button{
-  background:none;border:none;color:var(--tx);
-  font-family:'Inter',sans-serif;font-size:16px;font-weight:500;
-  padding:0 16px;border-radius:10px;cursor:pointer;text-align:left;
-  transition:background .16s,transform .18s var(--ease);-webkit-tap-highlight-color:transparent;
-  min-height:52px;display:flex;align-items:center;
-  opacity:0;transform:translateX(-10px);
-}
-.mobile-menu.open button{opacity:1;transform:none}
-.mobile-menu.open button:nth-child(1){transition-delay:.03s}
-.mobile-menu.open button:nth-child(2){transition-delay:.06s}
-.mobile-menu.open button:nth-child(3){transition-delay:.09s}
-.mobile-menu.open button:nth-child(4){transition-delay:.12s}
-.mobile-menu.open button:nth-child(5){transition-delay:.15s}
-.mobile-menu.open button:nth-child(6){transition-delay:.18s}
-.mobile-menu.open button:nth-child(7){transition-delay:.21s}
-.mobile-menu.open button:nth-child(8){transition-delay:.24s}
-.mobile-menu.open button:nth-child(9){transition-delay:.27s}
-.mobile-menu button:hover{background:rgba(255,255,255,.07)}
-.mobile-menu button.active{background:rgba(255,255,255,.1);color:#fff}
-.mobile-menu .m-divider{height:1px;background:var(--glass-border);margin:6px 4px}
-.mobile-menu .m-cta{
-  background:var(--red)!important;color:#fff!important;
-  justify-content:center!important;font-weight:700!important;
-  margin-top:4px;font-size:15px!important;letter-spacing:.03em;
-  box-shadow:0 4px 20px rgba(99,70,240,.4);border-radius:10px;
-}
-
-.page{display:block}
-.page.hidden{display:none!important}
-.page-fade{animation:pageFadeIn .45s var(--ease-soft) both}
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.iframe-page{
-  position:fixed;
-  top:calc(var(--nav-h) + var(--safe-top));
-  left:0;right:0;bottom:0;z-index:50;
-}
-.iframe-page iframe{width:100%;height:100%;border:none;display:block}
-.iframe-loading{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:var(--bg);gap:14px;z-index:1;transition:opacity .35s ease;
-}
-.iframe-loading.done{opacity:0;pointer-events:none}
-.spinner{
-  width:30px;height:30px;border:2px solid var(--b);
-  border-top-color:var(--red);border-radius:50%;
-  animation:spin .7s linear infinite;
-  box-shadow:0 0 18px rgba(99,70,240,.3);
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.iframe-loading p{
-  font-size:11px;color:var(--tx2);letter-spacing:.1em;text-transform:uppercase;
-  font-family:'JetBrains Mono',monospace;
-}
-
-#page-home{padding-top:calc(var(--nav-h) + var(--safe-top));position:relative;z-index:2}
-
-.hero{
-  position:relative;
-  min-height:calc(100svh - var(--nav-h) - var(--safe-top));
-  display:flex;align-items:flex-end;
-  padding:0 28px 80px;overflow:hidden;
-}
-.hero-static-bg{
-  position:absolute;inset:0;z-index:0;
-  background-image:url('Images/RFLImage2.webp');
-  background-size:cover;background-position:center 22%;
-  filter:brightness(.52) saturate(.92);
-  transform:scale(1.02);
-}
-.hero-vignette{
-  position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(to top,var(--bg) 0%,rgba(4,4,6,.6) 32%,transparent 60%),
-    linear-gradient(to right,rgba(4,4,6,.85) 0%,rgba(4,4,6,.25) 50%,transparent 70%);
-  pointer-events:none;
-}
-.hero-top-fade{
-  position:absolute;top:0;left:0;right:0;height:120px;z-index:1;
-  background:linear-gradient(to bottom,rgba(4,4,6,.5) 0%,transparent 100%);
-  pointer-events:none;
-}
-.hero-content{
-  position:relative;z-index:2;max-width:600px;will-change:transform;
-  background:var(--glass-bg-soft);
-  border:1px solid var(--glass-border);
-  border-radius:16px;
-  padding:28px 30px;
-  backdrop-filter:blur(var(--glass-blur)) saturate(150%);
-  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(150%);
-  box-shadow:var(--glass-shadow);
-}
-.hero-content::before{
-  content:'';position:absolute;top:0;left:16px;right:16px;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);
-  pointer-events:none;
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:#a78bfa;margin-bottom:16px;
-  opacity:0;transform:translateY(14px);animation:heroUp .7s var(--ease) .1s forwards;
-}
-.hero-eyebrow::before{content:'';width:20px;height:2px;background:var(--red);border-radius:2px}
-.hero h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(56px,11vw,102px);
-  line-height:.89;letter-spacing:.02em;color:#fff;margin-bottom:20px;
-  overflow:hidden;
-}
-.hero h1 .ln{display:block;opacity:0;transform:translateY(100%);animation:heroUp .8s var(--ease) forwards}
-.hero h1 .ln:nth-child(1){animation-delay:.2s}
-.hero h1 .ln:nth-child(2){animation-delay:.34s}
-.hero h1 em{color:var(--red);font-style:normal;position:relative}
-@keyframes heroUp{to{opacity:1;transform:none}}
-.hero-sub{
-  font-size:13.5px;line-height:1.75;font-weight:400;
-  color:var(--tx2);max-width:380px;margin-bottom:26px;
-  opacity:0;transform:translateY(14px);animation:heroUp .7s var(--ease) .48s forwards;
-}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-  opacity:0;transform:translateY(14px);animation:heroUp .7s var(--ease) .58s forwards;
-}
-.hero-key-row{
-  display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;
-  opacity:0;transform:translateY(14px);animation:heroUp .7s var(--ease) .66s forwards;
-}
-.hero-key-chip{
-  display:flex;align-items:center;gap:6px;
-  padding:5px 10px;border-radius:7px;
-  background:rgba(255,255,255,.07);border:1px solid var(--glass-border);
-  font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--tx2);
-}
-.hero-key-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--gr);flex-shrink:0}
-.hero-key-chip .dot.on{animation:livePulse 1.8s ease infinite}
-@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(24,212,100,.5)}70%{box-shadow:0 0 0 6px rgba(24,212,100,0)}100%{box-shadow:0 0 0 0 rgba(24,212,100,0)}}
-
-.hero-stats{
-  position:absolute;right:52px;top:88px;z-index:2;
-  display:flex;align-items:stretch;gap:0;
-  background:var(--glass-bg-soft);border:1px solid var(--glass-border);border-radius:12px;
-  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));
-  padding:2px 4px;box-shadow:var(--glass-shadow);
-}
-.hero-stat{display:flex;flex-direction:column;padding:12px 20px;text-align:right;border-left:1px solid var(--glass-border)}
-.hero-stat:first-child{border-left:none;padding-right:20px}
-.hero-stat-num{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;color:#fff;line-height:1}
-.hero-stat-label{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tx2);margin-top:5px;font-family:'JetBrains Mono',monospace}
-
-.btn-primary{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--red);color:#fff;
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;letter-spacing:.03em;
-  padding:13px 24px;border-radius:9px;border:1px solid rgba(255,255,255,.15);
-  cursor:pointer;text-decoration:none;position:relative;overflow:hidden;
-  transition:background .16s,transform .12s,box-shadow .16s;
-  -webkit-tap-highlight-color:transparent;min-height:48px;
-}
-.btn-primary:hover{background:#5b3fd9;transform:translateY(-1px);box-shadow:0 8px 28px rgba(99,70,240,.55)}
-.btn-primary:active{transform:translateY(0) scale(.98)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:7px;
-  color:var(--tx);background:var(--glass-bg-soft);
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
-  padding:13px 22px;border-radius:9px;border:1px solid var(--glass-border);cursor:pointer;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  transition:color .16s,border-color .16s,background .16s,transform .12s;
-  -webkit-tap-highlight-color:transparent;min-height:48px;
-}
-.btn-ghost:hover{color:#fff;border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.1);transform:translateY(-1px)}
-.btn-ghost:active{transform:translateY(0) scale(.98)}
-
-.mobile-stats{
-  display:none;grid-template-columns:repeat(3,1fr);
-  border-bottom:1px solid var(--glass-border);background:var(--s1);
-}
-.mobile-stat{padding:20px 16px;border-right:1px solid var(--glass-border);text-align:center}
-.mobile-stat:last-child{border-right:none}
-.mobile-stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--tx);line-height:1;display:block}
-.mobile-stat-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);margin-top:5px;font-family:'JetBrains Mono',monospace;display:block}
-
-.status-strip{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  background:var(--s1);border-bottom:1px solid var(--glass-border);
-  position:relative;
-}
-.status-strip::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,var(--red-edge),transparent 55%);
-}
-.status-item{padding:24px 28px;border-right:1px solid var(--glass-border);position:relative;overflow:hidden;transition:background .25s}
-.status-item:hover{background:rgba(255,255,255,.03)}
-.status-item:last-child{border-right:none}
-.status-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);margin-bottom:8px;font-family:'JetBrains Mono',monospace}
-.status-value{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--tx);font-variant-numeric:tabular-nums}
-.status-live{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gr)}
-.live-dot{width:7px;height:7px;border-radius:50%;background:var(--gr);flex-shrink:0;animation:sLivePulse 2s ease infinite;box-shadow:0 0 0 0 rgba(24,212,100,.4)}
-@keyframes sLivePulse{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(24,212,100,.4)}50%{transform:scale(1.15);box-shadow:0 0 0 6px rgba(24,212,100,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(24,212,100,.4)}}
-
-.section{padding:72px 28px;position:relative}
-.section-header{margin-bottom:28px}
-.sec-hd-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.section-eyebrow{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a78bfa;margin-bottom:10px;font-family:'JetBrains Mono',monospace}
-.section-eyebrow::before{content:'';width:20px;height:2px;background:var(--red);border-radius:2px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,46px);letter-spacing:.03em;line-height:.95;color:var(--tx)}
-.sec-ct{
-  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--tx2);background:var(--s3);border:1px solid var(--glass-border);
-  border-radius:20px;padding:3px 10px;
-}
-.sec-ct.sec-ct-live{
-  color:#a78bfa;border-color:rgba(99,70,240,.4);background:rgba(99,70,240,.12);
-  display:inline-flex;align-items:center;gap:6px;
-}
-.sec-ct.sec-ct-live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;animation:sLivePulse 2s ease infinite}
-.sec-rule{flex:1;height:1px;background:var(--glass-border);min-width:24px}
-
-.hub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.hub-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.hub-scroll::-webkit-scrollbar{height:8px}
 .hub-card{
-  position:relative;height:260px;overflow:hidden;cursor:pointer;
-  background:var(--glass-bg);
-  border:1px solid var(--glass-border);
-  border-radius:13px;
-  -webkit-tap-highlight-color:transparent;
-  transition:border-color .3s,transform .3s var(--ease),box-shadow .3s;
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  position:relative;flex:0 0 260px;height:230px;overflow:hidden;cursor:pointer;scroll-snap-align:start;
+  background:var(--navy);border-radius:10px;-webkit-tap-highlight-color:transparent;
+  transition:transform .25s var(--ease),box-shadow .25s;
 }
-.hub-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;z-index:3;
-  background:linear-gradient(90deg,var(--red-edge),transparent 55%);
-}
-.hub-card::after{
-  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;
-  background:radial-gradient(220px circle at var(--mx) var(--my), rgba(99,70,240,.2), transparent 60%);
-  transition:opacity .3s;
-}
-.hub-card:hover{border-color:rgba(99,70,240,.4);box-shadow:0 16px 40px rgba(0,0,0,.4);transform:translateY(-3px)}
-.hub-card:hover::after{opacity:1}
-.hub-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.36) saturate(.7);transition:filter .5s var(--ease-soft),transform .6s var(--ease-soft)}
-.hub-card:hover img{filter:brightness(.55) saturate(1);transform:scale(1.04)}
-.hub-card-overlay{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:linear-gradient(to top,rgba(15,15,26,.92) 0%,rgba(15,15,26,.2) 55%,transparent 100%);transition:background .4s}
-.hub-card:hover .hub-card-overlay{background:linear-gradient(to top,rgba(15,15,26,.95) 0%,rgba(15,15,26,.4) 55%,transparent 100%)}
-.hub-card-tag{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;margin-bottom:5px;font-family:'JetBrains Mono',monospace;opacity:0;transform:translateY(5px);transition:opacity .3s,transform .3s}
-.hub-card:hover .hub-card-tag{opacity:1;transform:none}
-.hub-card-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;color:#fff;transform:translateY(3px);transition:transform .3s}
-.hub-card:hover .hub-card-name{transform:none}
-.hub-card-arrow{position:absolute;z-index:3;top:14px;right:14px;width:28px;height:28px;background:var(--glass-bg-soft);border:1px solid var(--glass-border);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(4px) scale(.9);transition:opacity .22s,transform .22s,background .22s;backdrop-filter:blur(8px)}
-.hub-card:hover .hub-card-arrow{opacity:1;transform:translateY(0) scale(1);background:rgba(255,255,255,.18)}
+.hub-card:hover{transform:translateY(-3px);box-shadow:0 16px 30px rgba(10,20,40,.22)}
+.hub-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.5) saturate(.9);transition:transform .5s var(--ease)}
+.hub-card:hover img{transform:scale(1.05)}
+.hub-card-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;background:linear-gradient(to top,rgba(6,10,20,.92) 0%,rgba(6,10,20,.15) 60%,transparent 100%)}
+.hub-card-tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ff8080;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.hub-card-name{font-family:'Oswald',sans-serif;font-size:19px;letter-spacing:.03em;color:#fff;text-transform:uppercase}
+.hub-card-badge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:12px;font-family:'JetBrains Mono',monospace}
 
-.yt-embed-card{
-  background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:16px;
-  overflow:hidden;box-shadow:var(--glass-shadow);
-  max-width:640px;margin:0 auto;
-}
-.yt-embed-wrap{position:relative;width:100%;padding-top:56.25%;background:#000}
-.yt-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
+/* ═══════════════ STATUS STRIP ═══════════════ */
+.status-strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy);border-top:1px solid rgba(255,255,255,.08)}
+.status-item{padding:22px 26px;border-right:1px solid rgba(255,255,255,.08)}
+.status-item:last-child{border-right:none}
+.status-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--on-navy-dim);margin-bottom:7px;font-family:'JetBrains Mono',monospace}
+.status-value{font-family:'Oswald',sans-serif;font-size:25px;letter-spacing:.03em;color:#fff}
+.status-live{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#3ecf6e}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#3ecf6e;flex-shrink:0;animation:tkPulse 2s ease infinite}
+@media(max-width:768px){.status-strip{grid-template-columns:repeat(2,1fr)}.status-item:nth-child(2){border-right:none}.status-item:nth-child(3){border-top:1px solid rgba(255,255,255,.08)}.status-item:nth-child(4){border-right:none;border-top:1px solid rgba(255,255,255,.08)}}
+
+/* ═══════════════ YOUTUBE CARD ═══════════════ */
+.yt-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(10,20,40,.05);max-width:720px}
+.yt-wrap{position:relative;width:100%;padding-top:56.25%;background:#000}
+.yt-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;display:block}
 .yt-promo{
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:14px;text-align:center;padding:24px;cursor:pointer;text-decoration:none;
-  background:
-    radial-gradient(500px 260px at 50% 30%, rgba(99,70,240,.16), transparent 65%),
-    linear-gradient(160deg,#1a1a2c,#101019);
-  transition:background .3s;
+  gap:13px;text-align:center;padding:24px;cursor:pointer;text-decoration:none;
+  background:linear-gradient(160deg,var(--navy-mid),var(--navy-deep));transition:filter .3s;
 }
-.yt-promo:hover{background:
-    radial-gradient(520px 280px at 50% 30%, rgba(99,70,240,.24), transparent 65%),
-    linear-gradient(160deg,#1e1e33,#131320);}
-.yt-promo-play{
-  width:66px;height:66px;border-radius:50%;
-  background:var(--red);display:flex;align-items:center;justify-content:center;
-  box-shadow:0 8px 32px rgba(99,70,240,.5);
-  transition:transform .22s var(--ease);flex-shrink:0;
-}
-.yt-promo:hover .yt-promo-play{transform:scale(1.08)}
-.yt-promo-play svg{width:22px;height:22px;fill:#fff;margin-left:3px}
-.yt-promo-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;color:#fff}
-.yt-promo-sub{font-size:12.5px;color:var(--tx2);max-width:380px;line-height:1.6}
-.yt-embed-footer{
-  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding:18px 22px;
-}
-.yt-embed-note{font-size:12.5px;color:var(--tx2);line-height:1.6}
+.yt-promo:hover{filter:brightness(1.1)}
+.yt-play{width:62px;height:62px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(211,18,42,.5);transition:transform .2s var(--ease);flex-shrink:0}
+.yt-promo:hover .yt-play{transform:scale(1.08)}
+.yt-play svg{width:20px;height:20px;fill:#fff;margin-left:3px}
+.yt-promo-title{font-family:'Oswald',sans-serif;font-size:21px;letter-spacing:.03em;text-transform:uppercase;color:#fff}
+.yt-promo-sub{font-size:12.5px;color:var(--on-navy-dim);max-width:360px;line-height:1.6}
+.yt-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:16px 20px}
+.yt-note{font-size:12.5px;color:var(--ink-2);line-height:1.6}
 
-.scroll-cue{
-  position:absolute;left:50%;bottom:18px;z-index:3;
-  transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  color:var(--tx2);text-decoration:none;cursor:pointer;background:none;border:none;
-  -webkit-tap-highlight-color:transparent;
-  opacity:0;animation:heroUp .7s var(--ease) .9s forwards;
+.btn-outline{
+  display:inline-flex;align-items:center;gap:7px;color:var(--navy);background:#fff;
+  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.02em;
+  padding:11px 18px;border-radius:7px;border:1px solid var(--line);cursor:pointer;text-decoration:none;
+  transition:border-color .15s,background .15s;white-space:nowrap;
 }
-.scroll-cue span{
-  font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  font-family:'JetBrains Mono',monospace;color:var(--tx2);
-  transition:color .2s;
-}
-.scroll-cue:hover span{color:#fff}
-.scroll-cue-icon{
-  width:30px;height:30px;border-radius:50%;
-  border:1px solid var(--glass-border);background:var(--glass-bg-soft);
-  display:flex;align-items:center;justify-content:center;
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  animation:scrollBounce 1.8s ease-in-out infinite;
-  transition:border-color .2s,background .2s;
-}
-.scroll-cue:hover .scroll-cue-icon{border-color:rgba(99,70,240,.5);background:rgba(99,70,240,.14)}
-.scroll-cue-icon svg{width:13px;height:13px}
-@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.btn-outline:hover{border-color:var(--navy);background:var(--surface-2)}
 
-.links-section{border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);background:var(--s1)}
+/* ═══════════════ QUICK LINK CARDS ═══════════════ */
+.links-section{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .links-grid{display:grid;grid-template-columns:1fr 1fr 1fr}
 .link-card{
-  padding:44px 36px;background:transparent;text-decoration:none;display:flex;align-items:flex-start;gap:20px;
-  border:1px solid transparent;cursor:pointer;position:relative;overflow:hidden;
-  transition:background .22s,border-color .22s;-webkit-tap-highlight-color:transparent;
+  padding:34px 30px;background:transparent;text-decoration:none;display:flex;align-items:flex-start;gap:16px;
+  cursor:pointer;position:relative;transition:background .2s;
 }
-.link-card::before{
-  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
-  background:radial-gradient(320px circle at var(--mx) var(--my), rgba(99,70,240,.1), transparent 65%);
-  transition:opacity .3s;
-}
-.link-card:hover::before{opacity:1}
-.link-card+.link-card{border-left:1px solid var(--glass-border)}
-.link-card:hover{background:rgba(255,255,255,.03);border-color:var(--glass-border)}
-.link-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,var(--red),transparent);opacity:0;transition:opacity .3s;z-index:1}
-.link-card:hover::after{opacity:1}
-.link-icon{
-  width:44px;height:44px;border-radius:11px;background:var(--red-dim);
-  border:1px solid var(--red-mid);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  transition:background .22s,transform .22s;position:relative;z-index:1;
-}
-.link-card:hover .link-icon{background:rgba(99,70,240,.24);transform:scale(1.06) rotate(-4deg)}
-.link-icon svg{width:20px;height:20px;fill:var(--red)}
-.link-body{flex:1;min-width:0;position:relative;z-index:1}
-.link-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;color:var(--tx);margin-bottom:8px}
-.link-desc{font-size:12.5px;color:var(--tx2);line-height:1.7;font-weight:400}
-.link-action{display:inline-flex;align-items:center;gap:5px;margin-top:16px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a78bfa;font-family:'JetBrains Mono',monospace;transition:gap .2s}
-.link-card:hover .link-action{gap:9px}
-.link-action svg{width:10px;height:10px}
+.link-card+.link-card{border-left:1px solid var(--line)}
+.link-card:hover{background:var(--surface-2)}
+.link-icon{width:42px;height:42px;border-radius:9px;background:rgba(211,18,42,.08);border:1px solid rgba(211,18,42,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
+.link-card:hover .link-icon{background:rgba(211,18,42,.16)}
+.link-icon svg{width:19px;height:19px;fill:var(--red)}
+.link-body{flex:1;min-width:0}
+.link-title{font-family:'Oswald',sans-serif;font-size:19px;letter-spacing:.03em;text-transform:uppercase;color:var(--navy);margin-bottom:6px}
+.link-desc{font-size:12.5px;color:var(--ink-2);line-height:1.65}
+.link-action{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-family:'JetBrains Mono',monospace}
+@media(max-width:900px){.links-grid{grid-template-columns:1fr}.link-card+.link-card{border-left:none;border-top:1px solid var(--line)}}
 
-footer{padding:32px max(28px,var(--safe-left));display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--glass-border);flex-wrap:wrap;gap:14px;background:var(--s1);padding-bottom:max(32px,var(--safe-bottom));position:relative;z-index:2}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.1em;color:var(--tx2)}
-.footer-copy{font-size:11px;color:var(--mu2);font-family:'JetBrains Mono',monospace}
-.footer-links{display:flex;gap:18px}
-.footer-links a{font-size:11px;color:var(--tx2);text-decoration:none;transition:color .18s;min-height:44px;display:flex;align-items:center}
-.footer-links a:hover{color:#fff}
+/* ═══════════════ FOOTER ═══════════════ */
+footer{background:var(--navy-deep);color:var(--on-navy-dim);padding:40px max(28px,var(--safe-left)) 24px;padding-bottom:max(24px,var(--safe-bottom))}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.footer-brand img{width:26px;height:26px;object-fit:contain}
+.footer-brand span{font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:.04em;color:#fff;text-transform:uppercase}
+.footer-desc{font-size:12px;line-height:1.7;max-width:280px}
+.footer-col h4{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:12px}
+.footer-col a,.footer-col button{display:block;background:none;border:none;text-align:left;cursor:pointer;color:var(--on-navy-dim);text-decoration:none;font-size:12.5px;padding:6px 0;transition:color .15s}
+.footer-col a:hover,.footer-col button:hover{color:#fff}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:18px}
+.footer-copy{font-size:11px;color:#6b7690;font-family:'JetBrains Mono',monospace}
+.footer-legal{display:flex;gap:16px}
+.footer-legal a{font-size:11px;color:#8592ab;text-decoration:none}
+.footer-legal a:hover{color:#fff}
+@media(max-width:820px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.footer-top{grid-template-columns:1fr}}
 
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease-soft),transform .6s var(--ease-soft)}
-.reveal.visible{opacity:1;transform:none}
+/* ═══════════════ PAGE / IFRAME MECHANICS ═══════════════ */
+.page{display:block}
+.page.hidden{display:none!important}
+.page-fade{animation:pageFadeIn .4s var(--ease) both}
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.iframe-page{position:fixed;top:calc(var(--util-h) + var(--nav-h) + var(--safe-top));left:0;right:0;bottom:0;z-index:50}
+.iframe-page iframe{width:100%;height:100%;border:none;display:block}
+.iframe-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg);gap:14px;z-index:1;transition:opacity .3s ease}
+.iframe-loading.done{opacity:0;pointer-events:none}
+.spinner{width:28px;height:28px;border:3px solid var(--line);border-top-color:var(--red);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.iframe-loading p{font-size:11px;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
 
-.back-to-top{
-  position:fixed;right:20px;bottom:calc(20px + var(--safe-bottom));z-index:150;
-  width:44px;height:44px;border-radius:50%;border:1px solid var(--glass-border);
-  background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--tx2);
-  display:flex;align-items:center;justify-content:center;cursor:pointer;
-  opacity:0;transform:translateY(10px) scale(.9);pointer-events:none;
-  box-shadow:var(--glass-shadow);
-  transition:opacity .25s var(--ease),transform .25s var(--ease),background .2s,color .2s,border-color .2s;
-  -webkit-tap-highlight-color:transparent;
-}
-.back-to-top.show{opacity:1;transform:none;pointer-events:auto}
-.back-to-top:hover{background:var(--red);color:#fff;border-color:var(--red)}
-
-@media(min-width:1600px){
-  .hero-content{max-width:680px}
-  .hero h1{font-size:clamp(74px,9vw,140px)}
-  .section,.hero{padding-left:64px;padding-right:64px}
-  .links-section .link-card{padding:52px 56px}
-}
-
-@media(max-width:1200px) and (min-width:901px){
-  .hero-stats{right:32px}
-  .hub-card{height:220px}
-}
-
-@media(max-width:900px){
-  .nav-center{display:none}
-  .nav-hamburger{display:flex}
-  .nav-cta{display:none}
-  .nav-secondary{display:none}
-  .nav-pill{display:none}
-}
-
-@media(max-width:768px){
-  .hub-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .hub-card{height:200px}
-  .hub-card-tag{opacity:1;transform:none}
-  .hub-card-arrow{opacity:1;transform:none}
-  .hub-card img{filter:brightness(.5) saturate(.9)}
-  .links-grid{grid-template-columns:1fr}
-  .link-card+.link-card{border-left:none;border-top:1px solid var(--glass-border)}
-  .link-card{padding:32px 24px;gap:18px}
-  .status-strip{grid-template-columns:repeat(2,1fr)}
-  .status-item:nth-child(2){border-right:none}
-  .status-item:nth-child(3){border-top:1px solid var(--glass-border)}
-  .status-item:nth-child(4){border-right:none;border-top:1px solid var(--glass-border)}
-  .section{padding:56px 20px}
-  .section-header{margin-bottom:28px}
-  .yt-embed-footer{padding:16px}
-  footer{flex-direction:column;align-items:flex-start;padding:28px 20px;padding-bottom:max(28px,var(--safe-bottom));gap:10px}
-  .footer-links{gap:14px}
-}
-
-@media(max-width:640px){
-  .hero{padding:0 16px 68px;align-items:flex-end}
-  .hero-static-bg{background-position:center 30%}
-  .hero-content{padding:20px 20px;border-radius:14px}
-  .hero h1{font-size:clamp(44px,13vw,64px);margin-bottom:12px}
-  .hero-eyebrow{margin-bottom:10px}
-  .hero-sub{font-size:13px;margin-bottom:20px;max-width:100%}
-  .hero-actions{flex-direction:row;gap:10px;flex-wrap:nowrap}
-  .btn-primary,.btn-ghost{flex:1;justify-content:center;font-size:13px;padding:13px 12px;min-height:48px}
-  .hero-stats{display:none}
-  .hero-key-row{display:none}
-  .scroll-cue{bottom:12px}
-  .mobile-stats{display:grid}
-  .hub-card{height:160px}
-  .hub-card-name{font-size:17px}
-  .hub-card-overlay{padding:14px 16px}
-  .hub-card-tag{font-size:9px}
-  .status-item{padding:18px 16px}
-  .status-value{font-size:24px}
-  .status-label{font-size:9px}
-  .section{padding:44px 16px}
-  .section-title{font-size:clamp(28px,8vw,40px)}
-  .yt-embed-card{border-radius:13px;max-width:100%}
-  .yt-promo{gap:10px;padding:18px}
-  .yt-promo-play{width:54px;height:54px}
-  .yt-promo-play svg{width:18px;height:18px}
-  .yt-promo-title{font-size:19px}
-  .yt-promo-sub{font-size:11.5px}
-  .yt-embed-footer{flex-direction:column;align-items:flex-start}
-  .yt-embed-footer .btn-ghost{width:100%;justify-content:center}
-  .link-card{padding:24px 16px;gap:14px}
-  .link-icon{width:40px;height:40px;border-radius:10px}
-  .link-title{font-size:20px;margin-bottom:6px}
-  .link-desc{font-size:12px;line-height:1.65}
-  .link-action{margin-top:12px}
-  footer{padding:24px 16px;padding-bottom:max(24px,var(--safe-bottom));gap:12px}
-  .footer-links{gap:14px}
-  .back-to-top{right:14px;bottom:calc(14px + var(--safe-bottom));width:40px;height:40px}
-}
-
-@media(max-width:390px){
-  .hero h1{font-size:clamp(40px,15vw,56px)}
-  .nav-brand{font-size:15px}
-  .hub-card{height:140px}
-  .hub-card-name{font-size:15px}
-  .mobile-stat-num{font-size:24px}
-  .status-item{padding:16px 14px}
-  .link-card{padding:20px 14px;gap:12px}
-}
-
-@media(max-height:480px) and (orientation:landscape){
-  .hero{min-height:auto;padding-top:90px;padding-bottom:40px}
-  .hero-stats{display:none}
-  .scroll-cue{display:none}
-}
-
-@media(hover:none){
-  .hub-card img{filter:brightness(.5) saturate(.9)}
-  .hub-card-tag{opacity:1;transform:none}
-  .hub-card-name{transform:none}
-  .hub-card-arrow{opacity:1;transform:none}
-  .hub-card::after,.link-card::before{display:none}
-  .hub-card:hover{transform:none}
-}
-
-@media(min-width:641px) and (max-width:900px){
-  .hero h1{font-size:clamp(52px,10vw,84px)}
-  .hub-card{height:230px}
-}
-
-#toasts{position:fixed;bottom:20px;right:16px;display:flex;flex-direction:column-reverse;gap:7px;z-index:9999;pointer-events:none;width:min(300px,calc(100vw - 32px))}
-.toast{background:var(--glass-bg);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-left:3px solid var(--red);border-radius:10px;padding:10px 14px;font-size:13px;color:#fff;box-shadow:var(--glass-shadow);pointer-events:all;animation:tIn .2s ease;word-break:break-word}
-.toast.green{border-left-color:var(--gr)}
-.toast.amber{border-left-color:var(--am)}
+/* ═══════════════ TOASTS / BACK TO TOP / APPLY POPUP ═══════════════ */
+#toasts{position:fixed;bottom:20px;right:16px;display:flex;flex-direction:column-reverse;gap:8px;z-index:9999;pointer-events:none;width:min(310px,calc(100vw - 32px))}
+.toast{background:var(--navy-deep);border:1px solid rgba(255,255,255,.12);border-left:3px solid var(--gold);border-radius:8px;padding:11px 14px;font-size:13px;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.3);pointer-events:all;animation:tIn .2s ease;word-break:break-word}
 .toast.out{animation:tOut .2s ease forwards}
 @keyframes tIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes tOut{from{opacity:1}to{opacity:0;transform:translateY(-5px)}}
 
-/* ══════════════════════════════════════════
-   VISUAL POLISH PASS (layered on top, same
-   classes/markup — no structural changes)
-══════════════════════════════════════════ */
-::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--s4);border-radius:8px;border:2px solid var(--bg)}
-::-webkit-scrollbar-thumb:hover{background:var(--mu2)}
-::selection{background:rgba(124,92,255,.3);color:#fff}
-h1 em,.nav-brand em{
-  background:linear-gradient(180deg,#4338ca 10%,#a78bfa 90%);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 2px 20px rgba(124,92,255,.4));
+.back-to-top{
+  position:fixed;right:20px;bottom:calc(20px + var(--safe-bottom));z-index:150;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  background:#fff;color:var(--ink-2);display:flex;align-items:center;justify-content:center;cursor:pointer;
+  opacity:0;transform:translateY(10px) scale(.9);pointer-events:none;
+  box-shadow:0 10px 26px rgba(10,20,40,.16);
+  transition:opacity .25s var(--ease),transform .25s var(--ease),background .2s,color .2s;
 }
-.btn-primary:hover,.nav-cta:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(124,92,255,.3);}
-.btn-ghost:hover{transform:translateY(-1px);}
+.back-to-top.show{opacity:1;transform:none;pointer-events:auto}
+.back-to-top:hover{background:var(--navy);color:#fff}
+
+#apply-popup{
+  position:fixed;bottom:28px;right:24px;z-index:5000;
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  width:min(340px,calc(100vw - 32px));overflow:hidden;box-shadow:0 20px 50px rgba(10,20,40,.25);
+  transform:translateY(16px);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;
+}
+#apply-popup .ap-top{height:4px;background:var(--red)}
+#apply-popup .ap-head{padding:16px 18px 6px;display:flex;align-items:center;justify-content:space-between}
+#apply-popup .ap-eyebrow{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:7px}
+#apply-popup .ap-dot{width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;animation:tkPulse 2s ease infinite}
+#apply-popup .ap-close{background:var(--surface-2);border:1px solid var(--line);cursor:pointer;color:var(--ink-2);font-size:13px;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center}
+#apply-popup .ap-body{padding:8px 18px 18px;display:flex;flex-direction:column;gap:10px}
+#apply-popup p{font-size:13px;color:var(--ink-2);line-height:1.6}
+#apply-popup .ap-cta{display:flex;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;text-decoration:none;padding:11px 14px;border-radius:8px;font-size:13px;font-weight:700;transition:background .15s}
+#apply-popup .ap-cta:hover{background:var(--navy-mid)}
+#apply-popup .ap-dismiss{background:none;border:none;color:var(--ink-3);font-size:11px;cursor:pointer;text-align:left}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:640px){
+  .kickoff-banner{padding:16px}
+  .kb-title{font-size:19px}
+  .section{padding:32px 16px}
+  .link-card{padding:24px 18px}
+  footer{padding:28px 16px 20px}
+}
 </style>
 </head>
 <body>
 
 <!--
   RFL MIGRATION TODOs — search-and-replace these once you have the real values:
-  1. Images/RFL.webp             -> your RFL logo/crest (now wired up)
-  2. Images/NFLBackgroundBanner.jpg -> your hero banner (now wired up)
-  3. Hub card thumbnails (Salary/Database/Standings/Rulebook) currently reuse
-     Images/NFLBackgroundBanner.jpg since only one banner image was provided —
-     drop in dedicated images with any filenames and update the four <img> tags
-     in the "League Hub" section below.
-  4. https://discord.gg/Fg8gPsruNw   -> your RFL Discord invite
-  5. https://www.roblox.com/groups            -> your RFL Roblox group URL
-  6. https://rpl-applications.vercel.app      -> your RFL applications form URL
-  7. rplmastersheet / rplcapsheet / rpldatabase / rflstandings / rplhistory / rplrulebook / rplbracket .vercel.app
-                                              -> the football versions of each tool (currently still the basketball league's apps)
-  8. CHANNEL_ID in the YouTube script below   -> your RFL channel ID
-  9. og:url                                   -> your live domain once deployed
+  1. Images/RFL.webp                -> RFL crest
+  2. Images/NFLBackgroundBanner.jpg  -> hero/OG banner
+  3. Hub card thumbnails currently reuse RFLImage2-5.webp — swap in dedicated art per tool as it's ready
+  4. https://discord.gg/Fg8gPsruNw    -> RFL Discord invite
+  5. https://www.roblox.com/groups    -> RFL Roblox group URL
+  6. https://rpl-applications.vercel.app -> RFL applications form
+  7. rplmastersheet / rflstandings / rflhistory / rflrulebook / etc. .vercel.app -> live tool URLs
+  8. CHANNEL_ID in the YouTube script -> RFL channel ID
+  9. og:url -> live domain once deployed
 
-  NOTE ON THIS EDIT: only "Standings" now navigates to its live page
-  (https://rflstandings.vercel.app/). Every other nav item — Salary,
-  Capsheet, Database, History, Bracket, Rulebook — still shows the
-  "isn't live yet" toast via comingSoon(). When each of those tools is
-  ready, swap its comingSoon('X') call for navigate('x') the same way
-  Standings was done below, and fill in that page's iframe src="".
+  Only Standings, History and Rulebook currently point to live pages.
+  Salary, Capsheet, Team Database and Bracket still show the "isn't live yet"
+  toast via comingSoon() until their tools ship.
 -->
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<nav id="mainNav" class="rfl-ticker">
-  <div class="rfl-tk-brand"><b>RFL</b><span>Season 1</span></div>
-  <button class="rfl-tk-item" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">
-    <div class="rfl-tk-dot"></div>
-    <div><div class="rfl-tk-label">DISCORD</div><div class="rfl-tk-meta">Join Now</div></div>
-  </button>
-  <button class="rfl-tk-item" onclick="navigate('standings')">
-    <div class="rfl-tk-dot"></div>
-    <div><div class="rfl-tk-label">STANDINGS</div><div class="rfl-tk-meta">Live</div></div>
-  </button>
-  <button class="rfl-tk-item" onclick="navigate('history')">
-    <div class="rfl-tk-dot" style="background:var(--bl)"></div>
-    <div><div class="rfl-tk-label">HISTORY</div><div class="rfl-tk-meta">Match Log</div></div>
-  </button>
-  <button class="rfl-tk-item" onclick="navigate('rules')">
-    <div class="rfl-tk-dot" style="background:var(--am)"></div>
-    <div><div class="rfl-tk-label">RULEBOOK</div><div class="rfl-tk-meta">Official</div></div>
-  </button>
-  <button class="rfl-tk-item" onclick="comingSoon('Bracket')">
-    <div class="rfl-tk-dot" style="background:#6b7280"></div>
-    <div><div class="rfl-tk-label">BRACKET</div><div class="rfl-tk-meta">Coming Soon</div></div>
-  </button>
-  <button class="rfl-tk-item" onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">
-    <div class="rfl-tk-dot" style="background:#6b7280"></div>
-    <div><div class="rfl-tk-label">YOUTUBE</div><div class="rfl-tk-meta">Watch</div></div>
-  </button>
-  <button class="rfl-tk-item" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
-    <div class="rfl-tk-dot" style="background:var(--red)"></div>
-    <div><div class="rfl-tk-label">APPLY</div><div class="rfl-tk-meta">Front Office</div></div>
-  </button>
-</nav>
+<div class="util-bar" id="utilBar">
+  <div class="util-left"><span class="long">SEASON 1 IS LIVE —</span> <b>JOIN THE LEAGUE</b></div>
+  <div class="util-right">
+    <a class="util-link" href="https://www.roblox.com/groups" target="_blank" rel="noopener">Roblox Group</a>
+    <a class="util-link" href="https://www.youtube.com/@SportingGear/featured" target="_blank" rel="noopener">YouTube</a>
+    <button class="util-cta" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Join Discord</button>
+  </div>
+</div>
 
-<div class="rfl-nav" id="rflMainNav">
-  <div class="rfl-nav-left">
-    <div class="rfl-nav-logo" onclick="navigate('home')">
+<nav id="mainNav" class="mainnav">
+  <div class="nav-left">
+    <div class="nav-logo" onclick="navigate('home')">
       <img src="Images/RFL.webp" alt="RFL">
+      <span class="nav-wordmark">RF<em>L</em></span>
     </div>
-    <div class="rfl-nav-menu">
-      <div class="rfl-nav-dd">
-        <span>WATCH <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-        <div class="rfl-nav-panel">
+    <div class="nav-menu">
+      <div class="nav-dd">
+        <button>WATCH <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <div class="nav-panel">
           <button onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">YouTube Channel</button>
           <button onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Live Game Announcements</button>
         </div>
       </div>
-      <div class="rfl-nav-dd">
-        <span>COMPETITION <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-        <div class="rfl-nav-panel">
+      <div class="nav-dd">
+        <button>COMPETITION <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <div class="nav-panel">
           <button onclick="navigate('standings')">Standings</button>
           <button onclick="navigate('history')">Match History</button>
           <button onclick="comingSoon('Bracket')">Bracket</button>
         </div>
       </div>
-      <div class="rfl-nav-dd">
-        <span>NEWS <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-        <div class="rfl-nav-panel">
+      <div class="nav-dd">
+        <button>NEWS <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <div class="nav-panel">
           <button onclick="navigate('history')">Match Recaps</button>
           <button onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Announcements</button>
         </div>
       </div>
-      <div class="rfl-nav-dd">
-        <span>FRONT OFFICE <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-        <div class="rfl-nav-panel">
+      <div class="nav-dd">
+        <button>FRONT OFFICE <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <div class="nav-panel">
           <button onclick="comingSoon('Salary')">Salary</button>
           <button onclick="comingSoon('Capsheet')">Capsheet</button>
           <button onclick="comingSoon('Team Database')">Team Database</button>
         </div>
       </div>
-      <div class="rfl-nav-dd">
-        <span>RULES <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
-        <div class="rfl-nav-panel">
+      <div class="nav-dd">
+        <button>RULES <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <div class="nav-panel">
           <button onclick="navigate('rules')">Rulebook</button>
         </div>
       </div>
     </div>
-    <span class="rfl-nav-kickoff" onclick="window.open('https://rpl-applications.vercel.app','_blank')">APPLICATIONS</span>
+    <span class="nav-kickoff" onclick="window.open('https://rpl-applications.vercel.app','_blank')">Applications</span>
   </div>
-  <div class="rfl-nav-right">
-    <span class="rfl-nav-textlink" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Discord ↗</span>
-    <span class="rfl-nav-textlink" onclick="window.open('https://www.roblox.com/groups','_blank')">Roblox Group ↗</span>
-    <span class="rfl-nav-textlink" onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">YouTube ↗</span>
-    <button class="rfl-nav-signin" onclick="toggleAdmin()">Admin</button>
-    <button class="nav-hamburger rfl-nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+  <div class="nav-right">
+    <a class="nav-textlink" href="https://discord.gg/Fg8gPsruNw" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="nav-textlink" href="https://www.roblox.com/groups" target="_blank" rel="noopener">Roblox Group ↗</a>
+    <a class="nav-textlink" href="https://www.youtube.com/@SportingGear/featured" target="_blank" rel="noopener">YouTube ↗</a>
+    <button class="nav-signin" onclick="toggleAdmin()">Admin</button>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
-</div>
+</nav>
 
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
   <button onclick="navigate('home');closeMenu()"      data-page="home"      class="active">Home</button>
@@ -950,23 +539,56 @@ h1 em,.nav-brand em{
   <button onclick="navigate('standings');closeMenu()" data-page="standings">Standings</button>
   <button onclick="navigate('history');closeMenu()"   data-page="history">History</button>
   <button onclick="comingSoon('Bracket');closeMenu()"   data-page="bracket">Bracket</button>
-   <button onclick="navigate('rules');closeMenu()"   data-page="rules">Rulebook</button>
+  <button onclick="navigate('rules');closeMenu()"   data-page="rules">Rulebook</button>
   <button onclick="window.open('https://rpl-applications.vercel.app','_blank');closeMenu()" data-page="applications">Applications</button>
   <div class="m-divider"></div>
   <button class="m-cta" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank');closeMenu()">Join Discord</button>
 </div>
 
+<div class="header-spacer"></div>
+
 <div id="page-home" class="page">
 
-  <div class="rfl-promo reveal">
-    <div class="rfl-promo-left">
-      <img class="rfl-promo-logo" src="Images/RFL.webp" alt="RFL">
+  <div class="hub-ticker" id="hubTicker">
+    <button class="tk-item" onclick="navigate('standings')">
+      <div class="tk-dot live"></div>
+      <div><div class="tk-label">STANDINGS</div><div class="tk-meta">Live</div></div>
+    </button>
+    <button class="tk-item" onclick="navigate('history')">
+      <div class="tk-dot"></div>
+      <div><div class="tk-label">HISTORY</div><div class="tk-meta">Match Log</div></div>
+    </button>
+    <button class="tk-item" onclick="navigate('rules')">
+      <div class="tk-dot warn"></div>
+      <div><div class="tk-label">RULEBOOK</div><div class="tk-meta">Official</div></div>
+    </button>
+    <button class="tk-item" onclick="comingSoon('Bracket')">
+      <div class="tk-dot soon"></div>
+      <div><div class="tk-label">BRACKET</div><div class="tk-meta">Coming Soon</div></div>
+    </button>
+    <button class="tk-item" onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">
+      <div class="tk-dot soon"></div>
+      <div><div class="tk-label">YOUTUBE</div><div class="tk-meta">Watch</div></div>
+    </button>
+    <button class="tk-item" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">
+      <div class="tk-dot live"></div>
+      <div><div class="tk-label">DISCORD</div><div class="tk-meta">Join Now</div></div>
+    </button>
+    <button class="tk-item" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
+      <div class="tk-dot" style="background:var(--red)"></div>
+      <div><div class="tk-label">APPLY</div><div class="tk-meta">Front Office</div></div>
+    </button>
+  </div>
+
+  <div class="kickoff-banner reveal">
+    <div class="kb-left">
+      <img class="kb-logo" src="Images/RFL.webp" alt="RFL">
       <div>
-        <div class="rfl-promo-eyebrow">SEASON 1 — FRESH BEGINNING</div>
-        <div class="rfl-promo-title">Revolutionary Football League Kicks Off</div>
+        <div class="kb-eyebrow">Season 1 — Fresh Beginning</div>
+        <div class="kb-title">Revolutionary Football League Kicks Off</div>
       </div>
     </div>
-    <button class="rfl-promo-cta" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Join Discord</button>
+    <button class="kb-cta" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Join Discord ↗</button>
   </div>
 
   <div class="rfl-feature">
@@ -977,52 +599,111 @@ h1 em,.nav-brand em{
       <a href="https://discord.gg/Fg8gPsruNw" target="_blank" rel="noopener"><img src="Images/RFLImage5.webp" alt=""><span>Join Discord</span></a>
     </div>
     <div class="rfl-sidebar">
-      <div class="rfl-sb-tabs">
-        <span class="rfl-sb-tab active">LEAGUE HUB</span>
-        <span class="rfl-sb-tab" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">DISCORD</span>
+      <div class="sb-tabs">
+        <button class="sb-tab active" type="button">League Hub</button>
+        <button class="sb-tab" type="button" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Discord</button>
       </div>
-      <div class="rfl-sb-list">
-        <div class="rfl-sb-row" onclick="navigate('standings')">
-          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M4 19V5M10 19V9M16 19V3M22 19H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <div class="rfl-sb-row-text">Standings — live records, updated after every game</div>
-        </div>
-        <div class="rfl-sb-row" onclick="navigate('history')">
-          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <div class="rfl-sb-row-text">Match History — full result log for Season 1</div>
-        </div>
-        <div class="rfl-sb-row" onclick="comingSoon('Salary')">
-          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <div class="rfl-sb-row-text">Salary — front-office finance tools (coming soon)</div>
-        </div>
-        <div class="rfl-sb-row" onclick="comingSoon('Team Database')">
-          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.8"/></svg>
-          <div class="rfl-sb-row-text">Team Database — full roster directory (coming soon)</div>
-        </div>
-        <div class="rfl-sb-row" onclick="navigate('rules')">
-          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <div class="rfl-sb-row-text">Rulebook — official league policies and gameday rules</div>
-        </div>
-        <div class="rfl-sb-row" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
-          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          <div class="rfl-sb-row-text">Applications — apply for a front-office role</div>
-        </div>
+      <div class="sb-list">
+        <button class="sb-row" onclick="navigate('standings')">
+          <svg class="sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M4 19V5M10 19V9M16 19V3M22 19H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="sb-row-text"><b>Standings</b>Live records, updated after every game</div>
+        </button>
+        <button class="sb-row" onclick="navigate('history')">
+          <svg class="sb-row-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="sb-row-text"><b>Match History</b>Full result log for Season 1</div>
+        </button>
+        <button class="sb-row" onclick="comingSoon('Salary')">
+          <svg class="sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="sb-row-text"><b>Salary</b>Front-office finance tools (coming soon)</div>
+        </button>
+        <button class="sb-row" onclick="comingSoon('Team Database')">
+          <svg class="sb-row-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.8"/></svg>
+          <div class="sb-row-text"><b>Team Database</b>Full roster directory (coming soon)</div>
+        </button>
+        <button class="sb-row" onclick="navigate('rules')">
+          <svg class="sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="sb-row-text"><b>Rulebook</b>Official league policies and gameday rules</div>
+        </button>
+        <button class="sb-row" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
+          <svg class="sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="sb-row-text"><b>Applications</b>Apply for a front-office role</div>
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="sec-hd-top reveal">
-        <span class="section-title" style="font-size:19px;letter-spacing:.08em;">Latest from YouTube</span>
-        <span class="sec-ct sec-ct-live" id="ytLiveBadge" style="display:none;">Live Now</span>
-        <div class="sec-rule"></div>
-      </div>
-      <div class="section-eyebrow reveal" style="margin-top:6px;">Highlights, Recaps &amp; Live Broadcasts</div>
+  <div class="status-strip">
+    <div class="status-item">
+      <div class="status-label">League Status</div>
+      <div class="status-live"><span class="live-dot"></span>Season 1 Active</div>
     </div>
-    <div class="yt-embed-card reveal">
-      <div class="yt-embed-wrap">
+    <div class="status-item">
+      <div class="status-label">Current Focus</div>
+      <div class="status-value">Standings</div>
+    </div>
+    <div class="status-item">
+      <div class="status-label">Rulebook</div>
+      <div class="status-value">Official</div>
+    </div>
+    <div class="status-item">
+      <div class="status-label">Applications</div>
+      <div class="status-value">Open</div>
+    </div>
+  </div>
+
+  <div class="section" id="hub-section">
+    <div class="section-head reveal">
+      <div class="section-title">League Hub</div>
+      <div class="section-nav">
+        <span class="sn-count">1 of 2</span>
+        <button class="sn-btn" aria-label="Previous" onclick="scrollHub(-1)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="sn-btn" aria-label="Next" onclick="scrollHub(1)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="hub-scroll reveal" id="hubScroll">
+      <div class="hub-card" onclick="navigate('standings')">
+        <img src="Images/RFLImage2.webp" alt="">
+        <div class="hub-card-badge">Live</div>
+        <div class="hub-card-overlay"><div class="hub-card-tag">Competition</div><div class="hub-card-name">Standings</div></div>
+      </div>
+      <div class="hub-card" onclick="navigate('history')">
+        <img src="Images/RFLImage3.webp" alt="">
+        <div class="hub-card-overlay"><div class="hub-card-tag">Competition</div><div class="hub-card-name">Match History</div></div>
+      </div>
+      <div class="hub-card" onclick="navigate('rules')">
+        <img src="Images/RFLImage4.webp" alt="">
+        <div class="hub-card-overlay"><div class="hub-card-tag">Reference</div><div class="hub-card-name">Rulebook</div></div>
+      </div>
+      <div class="hub-card" onclick="comingSoon('Bracket')">
+        <img src="Images/RFLImage5.webp" alt="">
+        <div class="hub-card-badge">Soon</div>
+        <div class="hub-card-overlay"><div class="hub-card-tag">Postseason</div><div class="hub-card-name">Bracket</div></div>
+      </div>
+      <div class="hub-card" onclick="comingSoon('Salary')">
+        <img src="Images/RFLImage2.webp" alt="">
+        <div class="hub-card-badge">Soon</div>
+        <div class="hub-card-overlay"><div class="hub-card-tag">Front Office</div><div class="hub-card-name">Salary</div></div>
+      </div>
+      <div class="hub-card" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
+        <img src="Images/RFLImage3.webp" alt="">
+        <div class="hub-card-overlay"><div class="hub-card-tag">Front Office</div><div class="hub-card-name">Applications</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--surface)">
+    <div class="section-head reveal">
+      <div class="section-title" style="font-size:19px">Latest From YouTube</div>
+      <span class="sn-count" id="ytLiveBadge" style="display:none;color:var(--red);font-weight:700">● Live Now</span>
+    </div>
+    <div class="yt-card reveal">
+      <div class="yt-wrap">
         <a class="yt-promo" id="ytPromo" href="https://www.youtube.com/@SportingGear/featured" target="_blank" rel="noopener" style="display:none;">
-          <div class="yt-promo-play" aria-hidden="true">
+          <div class="yt-play" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
           <div class="yt-promo-title">Watch on YouTube</div>
@@ -1036,9 +717,9 @@ h1 em,.nav-brand em{
           loading="lazy">
         </iframe>
       </div>
-      <div class="yt-embed-footer">
-        <span class="yt-embed-note" id="ytEmbedNote">New videos posted regularly — check back for the latest highlights.</span>
-        <a href="https://www.youtube.com/@SportingGear/featured" target="_blank" rel="noopener" class="btn-ghost">
+      <div class="yt-footer">
+        <span class="yt-note" id="ytEmbedNote">New videos posted regularly — check back for the latest highlights.</span>
+        <a href="https://www.youtube.com/@SportingGear/featured" target="_blank" rel="noopener" class="btn-outline">
           View More
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -1053,7 +734,7 @@ h1 em,.nav-brand em{
         <div class="link-body">
           <div class="link-title">Discord Server</div>
           <div class="link-desc">Join thousands of RFL players. Get announcements, find your team, and stay up to date with every season update.</div>
-          <div class="link-action">Join Server <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="link-action">Join Server →</div>
         </div>
       </a>
       <a href="https://www.roblox.com/groups" target="_blank" rel="noopener" class="link-card reveal">
@@ -1061,7 +742,7 @@ h1 em,.nav-brand em{
         <div class="link-body">
           <div class="link-title">Roblox Group</div>
           <div class="link-desc">Join the official RFL group on Roblox to unlock access to league games and represent your franchise.</div>
-          <div class="link-action">Open Group <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="link-action">Open Group →</div>
         </div>
       </a>
       <a href="https://www.youtube.com/@SportingGear/featured" target="_blank" rel="noopener" class="link-card reveal">
@@ -1069,16 +750,43 @@ h1 em,.nav-brand em{
         <div class="link-body">
           <div class="link-title">YouTube Channel</div>
           <div class="link-desc">Watch game highlights, recaps, and league content on our official YouTube channel.</div>
-          <div class="link-action">Watch Now <svg viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="link-action">Watch Now →</div>
         </div>
       </a>
     </div>
   </div>
 
   <footer class="reveal">
-    <div class="footer-logo">RFL — Revolutionary Football League</div>
-    <div class="footer-copy">© 2026 RFL League. All rights reserved.</div>
-    <div class="footer-links"><a href="#">Rules</a><a href="#">Privacy</a><a href="#">Contact</a></div>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand"><img src="Images/RFL.webp" alt="RFL"><span>RFL</span></div>
+        <p class="footer-desc">The Revolutionary Football League is the most structured tackle football league on Roblox. Elite systems, real competition, Season 1 now active.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Competition</h4>
+        <button onclick="navigate('standings')">Standings</button>
+        <button onclick="navigate('history')">Match History</button>
+        <button onclick="comingSoon('Bracket')">Bracket</button>
+      </div>
+      <div class="footer-col">
+        <h4>Front Office</h4>
+        <button onclick="comingSoon('Salary')">Salary</button>
+        <button onclick="comingSoon('Capsheet')">Capsheet</button>
+        <button onclick="comingSoon('Team Database')">Team Database</button>
+        <a href="https://rpl-applications.vercel.app" target="_blank" rel="noopener">Applications</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://discord.gg/Fg8gPsruNw" target="_blank" rel="noopener">Discord</a>
+        <a href="https://www.roblox.com/groups" target="_blank" rel="noopener">Roblox Group</a>
+        <a href="https://www.youtube.com/@SportingGear/featured" target="_blank" rel="noopener">YouTube</a>
+        <button onclick="navigate('rules')">Rulebook</button>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 RFL — Revolutionary Football League. All rights reserved.</div>
+      <div class="footer-legal"><a href="#" onclick="navigate('rules');return false;">Rules</a><a href="#">Privacy</a><a href="#">Contact</a></div>
+    </div>
   </footer>
 </div>
 
@@ -1123,37 +831,19 @@ h1 em,.nav-brand em{
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5L5 12M12 5l7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
-<div id="apply-popup" style="
-  position:fixed;bottom:28px;right:24px;z-index:5000;
-  background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:15px;
-  width:min(340px,calc(100vw - 32px));overflow:hidden;
-  backdrop-filter:blur(var(--glass-blur)) saturate(150%);-webkit-backdrop-filter:blur(var(--glass-blur)) saturate(150%);
-  box-shadow:var(--glass-shadow);
-  transform:translateY(16px);opacity:0;pointer-events:none;
-  transition:opacity .3s ease,transform .3s ease;
-">
-  <div style="height:1px;background:linear-gradient(90deg,var(--red-edge),transparent 60%)"></div>
-  <div style="padding:18px 20px 6px;display:flex;align-items:center;justify-content:space-between">
-    <div style="font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a78bfa;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:7px">
-      <span style="width:6px;height:6px;border-radius:50%;background:var(--red);display:inline-block;animation:sLivePulse 2s ease infinite"></span>
-      Season 1 Applications
-    </div>
-    <button onclick="closeApplyPopup()" style="background:rgba(255,255,255,.07);border:1px solid var(--glass-border);cursor:pointer;color:var(--tx2);font-size:14px;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;transition:all .13s;flex-shrink:0" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">✕</button>
+<div id="apply-popup">
+  <div class="ap-top"></div>
+  <div class="ap-head">
+    <div class="ap-eyebrow"><span class="ap-dot"></span>Season 1 Applications</div>
+    <button class="ap-close" onclick="closeApplyPopup()" aria-label="Close">✕</button>
   </div>
-  <div style="padding:6px 20px 20px;display:flex;flex-direction:column;gap:10px">
-    <p style="font-size:13px;color:var(--tx2);line-height:1.65;font-weight:400">
-      Interested in joining RFL? Apply to work on staff or own a franchise for our very first season.
-    </p>
-    <a href="https://rpl-applications.vercel.app" target="_blank" rel="noopener" onclick="closeApplyPopup()" style="
-      display:flex;align-items:center;justify-content:space-between;
-      background:var(--red);color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.15);
-      padding:11px 14px;border-radius:9px;font-size:13px;font-weight:700;
-      transition:background .15s;
-    " onmouseover="this.style.background='#5b3fd9'" onmouseout="this.style.background=''">
+  <div class="ap-body">
+    <p>Interested in joining RFL? Apply to work on staff or own a franchise for our very first season.</p>
+    <a class="ap-cta" href="https://rpl-applications.vercel.app" target="_blank" rel="noopener" onclick="closeApplyPopup()">
       <span>🏈 Join as Staff or Franchise Owner</span>
       <span style="font-size:11px;opacity:.85">Apply →</span>
     </a>
-    <button onclick="closeApplyPopup()" style="background:none;border:none;color:var(--tx2);font-size:11px;cursor:pointer;padding:2px 0;text-align:left;font-family:'Inter',sans-serif">Not interested</button>
+    <button class="ap-dismiss" onclick="closeApplyPopup()">Not interested</button>
   </div>
 </div>
 
@@ -1165,7 +855,7 @@ function comingSoon(label){
   const wrap=document.getElementById('toasts');
   if(!wrap)return;
   const t=document.createElement('div');
-  t.className='toast amber';
+  t.className='toast';
   t.textContent=label+' isn\u2019t live yet \u2014 check back soon.';
   wrap.appendChild(t);
   setTimeout(()=>{
@@ -1175,17 +865,24 @@ function comingSoon(label){
   closeMenu();
 }
 
-document.querySelectorAll('.hub-card[tabindex]').forEach(card=>{
-  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();card.click()}});
-});
+function toggleAdmin(){
+  comingSoon('Admin sign-in');
+}
+
+function scrollHub(dir){
+  const el=document.getElementById('hubScroll');
+  if(!el)return;
+  el.scrollBy({left:dir*280,behavior:REDUCED_MOTION?'auto':'smooth'});
+}
 
 const navEl=document.getElementById('mainNav');
+const utilEl=document.getElementById('utilBar');
 let lastScrollY=window.scrollY;
 window.addEventListener('scroll',()=>{
   const y=window.scrollY;
   navEl.classList.toggle('scrolled',y>20);
-  if(y>140&&y>lastScrollY){navEl.classList.add('nav-hidden')}
-  else{navEl.classList.remove('nav-hidden')}
+  if(y>140&&y>lastScrollY){navEl.classList.add('nav-hidden');utilEl.style.transform='translateY(-140%)'}
+  else{navEl.classList.remove('nav-hidden');utilEl.style.transform=''}
   lastScrollY=y;
 
   const doc=document.documentElement;
@@ -1271,7 +968,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu()}});
 const revealObs=new IntersectionObserver((entries)=>{
   entries.forEach((entry,i)=>{
     if(entry.isIntersecting){
-      entry.target.style.transitionDelay=(i*0.06)+'s';
+      entry.target.style.transitionDelay=(i*0.05)+'s';
       entry.target.classList.add('visible');
       revealObs.unobserve(entry.target);
     }
@@ -1279,63 +976,9 @@ const revealObs=new IntersectionObserver((entries)=>{
 },{threshold:0.06});
 document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-function countUp(el){
-  const target=parseInt(el.dataset.count,10);
-  if(isNaN(target))return;
-  if(REDUCED_MOTION){el.textContent=target;return}
-  const dur=1100,start=performance.now();
-  function tick(now){
-    const p=Math.min(1,(now-start)/dur);
-    const eased=1-Math.pow(1-p,3);
-    el.textContent=Math.round(target*eased);
-    if(p<1)requestAnimationFrame(tick);else el.textContent=target;
-  }
-  requestAnimationFrame(tick);
-}
-const countObs=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){countUp(entry.target);countObs.unobserve(entry.target)}
-  });
-},{threshold:0.4});
-document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
-
-if(window.matchMedia('(hover: hover)').matches && !REDUCED_MOTION){
-  document.querySelectorAll('.hub-card, .link-card').forEach(card=>{
-    card.addEventListener('mousemove',e=>{
-      const r=card.getBoundingClientRect();
-      card.style.setProperty('--mx',(e.clientX-r.left)+'px');
-      card.style.setProperty('--my',(e.clientY-r.top)+'px');
-    });
-  });
-
-  const heroEl=document.querySelector('.hero');
-  const heroContent=document.getElementById('heroContent');
-  if(heroContent&&heroEl){
-    heroEl.addEventListener('mousemove',e=>{
-      const r=heroEl.getBoundingClientRect();
-      const px=(e.clientX-r.left)/r.width-0.5;
-      const py=(e.clientY-r.top)/r.height-0.5;
-      heroContent.style.transform=`translate(${(px*8).toFixed(1)}px, ${(py*5).toFixed(1)}px)`;
-    });
-    heroEl.addEventListener('mouseleave',()=>{heroContent.style.transform=''});
-  }
-}
-
 document.getElementById('backToTop').addEventListener('click',()=>{
   window.scrollTo({top:0,behavior:REDUCED_MOTION?'auto':'smooth'});
 });
-
-const scrollCueBtn=document.getElementById('scrollCue');
-if(scrollCueBtn){
-  scrollCueBtn.addEventListener('click',()=>{
-    const target=document.getElementById('hub-section')||document.querySelector('.status-strip');
-    if(target)target.scrollIntoView({behavior:REDUCED_MOTION?'auto':'smooth',block:'start'});
-  });
-  window.addEventListener('scroll',()=>{
-    scrollCueBtn.style.opacity=window.scrollY>80?'0':'';
-    scrollCueBtn.style.pointerEvents=window.scrollY>80?'none':'';
-  },{passive:true});
-}
 
 (function(){
   const POPUP_KEY='rpl_apply_popup_dismissed';
@@ -1362,7 +1005,6 @@ if(scrollCueBtn){
 
 (function(){
   const CHANNEL_ID='UCC5gvc4coST3DG7yfRRGTZQ';
-
   const FEATURED_VIDEO_ID='';
 
   const frame=document.getElementById('ytEmbedFrame');
