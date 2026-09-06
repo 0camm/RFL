@@ -26,29 +26,29 @@
 <style>
 
 :root{
-  --red:#7c5cff;--red-a:.08;
-  --red-dim:rgba(124,92,255,.09);--red-mid:rgba(124,92,255,.22);--red-edge:rgba(124,92,255,.5);
-  --red-glow:rgba(124,92,255,.45);
-  --bg:#0f0f1a;--s1:#151524;--s2:#1a1a2c;--s3:#202035;--s4:#28283f;
+  --red:#d50a0a;--red-a:.08;
+  --red-dim:rgba(213,10,10,.08);--red-mid:rgba(213,10,10,.22);--red-edge:rgba(213,10,10,.5);
+  --red-glow:rgba(213,10,10,.45);
+  --bg:#f2f3f5;--s1:#ffffff;--s2:#eef0f2;--s3:#e6e8eb;--s4:#dcdfe3;
   --surface:var(--s1);--surface2:var(--s2);
-  --b:rgba(255,255,255,.10);--b2:rgba(255,255,255,.055);
+  --b:rgba(15,17,20,.10);--b2:rgba(15,17,20,.06);
   --border:var(--b);--border2:var(--b2);
-  --mu:#8888a8;--mu2:#5c5c7a;
+  --mu:#666b74;--mu2:#989ca4;
   --muted:var(--mu);--muted2:var(--mu2);
-  --tx:#f2f2fa;--tx2:#b4b4d0;
+  --tx:#101216;--tx2:#3d4148;
   --text:var(--tx);
-  --gr:#18d464;--gr-d:rgba(24,212,100,.09);
-  --am:#f5a623;--am-d:rgba(245,166,35,.09);
-  --bl:#5b9cf6;--bl-d:rgba(91,156,246,.09);
-  --win:#3de87a;--lose:#f06070;
-  --green:#22c55e;--gold:#c9a84c;
+  --gr:#0e8a3e;--gr-d:rgba(14,138,62,.08);
+  --am:#b5760a;--am-d:rgba(181,118,10,.08);
+  --bl:#0a5cb5;--bl-d:rgba(10,92,181,.08);
+  --win:#0e8a3e;--lose:#d5163a;
+  --green:#0e8a3e;--gold:#a3781f;
 
-  --glass-bg:rgba(26,26,44,.58);
-  --glass-bg-soft:rgba(26,26,44,.40);
-  --glass-border:rgba(255,255,255,.12);
-  --glass-hi:rgba(255,255,255,.08);
+  --glass-bg:rgba(255,255,255,.86);
+  --glass-bg-soft:rgba(255,255,255,.72);
+  --glass-border:rgba(15,17,20,.08);
+  --glass-hi:rgba(255,255,255,.5);
   --glass-blur:18px;
-  --glass-shadow:0 20px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.07);
+  --glass-shadow:0 20px 60px rgba(15,17,20,.10), inset 0 1px 0 rgba(255,255,255,.6);
 
   --nav-h:60px;
   --safe-top:env(safe-area-inset-top,0px);
@@ -62,10 +62,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:
-    radial-gradient(1100px 620px at 12% -8%, rgba(99,70,240,.13), transparent 55%),
-    radial-gradient(900px 560px at 100% 0%, rgba(91,156,246,.08), transparent 50%),
-    var(--bg);
+  background:var(--bg);
   color:var(--tx);
   font-family:'Inter',sans-serif;font-size:14px;
   min-height:100vh;-webkit-font-smoothing:antialiased;
@@ -87,6 +84,146 @@ button:focus-visible,a:focus-visible{outline-offset:3px}
 
 .scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--red),#c4b5fd);width:0%;z-index:300;transition:width .1s linear;box-shadow:0 0 8px var(--red-glow)}
 
+/* ═══════════════ RFL TICKER (top strip) ═══════════════ */
+.rfl-ticker{
+  position:fixed;top:0;left:0;right:0;z-index:210;
+  display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;
+  background:#0c0d10;border-bottom:3px solid var(--red);
+  height:44px;padding-top:var(--safe-top);
+}
+.rfl-ticker::-webkit-scrollbar{display:none}
+.rfl-tk-brand{
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  gap:1px;padding:4px 16px;flex-shrink:0;border-right:1px solid rgba(255,255,255,.14);
+  background:rgba(213,10,10,.14);
+}
+.rfl-tk-brand b{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.06em;color:#fff}
+.rfl-tk-brand span{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--red2,#ff5b5b)}
+.rfl-tk-item{
+  display:flex;align-items:center;gap:8px;
+  padding:0 16px;flex-shrink:0;border-right:1px solid rgba(255,255,255,.08);
+  background:none;border-top:none;border-bottom:none;border-left:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:background .15s;
+}
+.rfl-tk-item:hover{background:rgba(255,255,255,.06)}
+.rfl-tk-dot{width:6px;height:6px;border-radius:50%;background:#3de87a;flex-shrink:0}
+.rfl-tk-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;color:#e8e9ec;white-space:nowrap}
+.rfl-tk-meta{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#7b8089;white-space:nowrap}
+
+/* ═══════════════ RFL MAIN NAV ═══════════════ */
+.rfl-nav{
+  position:fixed;top:44px;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;padding:12px max(20px,var(--safe-right)) 12px max(20px,var(--safe-left));
+  background:var(--s1);border-bottom:1px solid var(--b);
+  transition:box-shadow .3s,transform .3s var(--ease-soft);
+}
+.rfl-nav.scrolled{box-shadow:0 4px 20px rgba(15,17,20,.08)}
+.rfl-nav.nav-hidden{transform:translateY(-100%)}
+.rfl-nav-left{display:flex;align-items:center;gap:28px;flex-wrap:nowrap}
+.rfl-nav-logo{display:flex;align-items:center;gap:0;cursor:pointer;flex-shrink:0}
+.rfl-nav-logo img{width:34px;height:34px;object-fit:contain;border-radius:6px}
+.rfl-nav-menu{display:flex;align-items:center;gap:22px}
+.rfl-nav-dd{position:relative}
+.rfl-nav-dd>span{
+  display:flex;align-items:center;gap:5px;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.02em;
+  color:var(--tx);padding:6px 0;
+}
+.rfl-nav-dd>span svg{width:9px;height:9px;transition:transform .15s}
+.rfl-nav-dd:hover>span svg{transform:rotate(180deg)}
+.rfl-nav-dd:hover>span{color:var(--red)}
+.rfl-nav-panel{
+  position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(4px);
+  background:#fff;border:1px solid var(--b);border-radius:10px;
+  box-shadow:0 16px 40px rgba(15,17,20,.16);
+  padding:8px;min-width:190px;
+  opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;
+}
+.rfl-nav-dd:hover .rfl-nav-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.rfl-nav-panel button{
+  display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--tx2);
+  padding:9px 12px;border-radius:6px;transition:background .12s,color .12s;
+}
+.rfl-nav-panel button:hover{background:var(--s2);color:var(--tx)}
+.rfl-nav-kickoff{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.02em;
+  color:var(--red);cursor:pointer;padding-left:20px;border-left:1px solid var(--b);
+}
+.rfl-nav-right{display:flex;align-items:center;gap:22px;flex-shrink:0}
+.rfl-nav-textlink{
+  display:flex;align-items:center;gap:4px;
+  font-size:12.5px;font-weight:600;color:var(--tx2);cursor:pointer;white-space:nowrap;
+}
+.rfl-nav-textlink svg{width:9px;height:9px}
+.rfl-nav-textlink:hover{color:var(--tx)}
+.rfl-nav-signin{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:700;color:var(--tx);
+  background:none;border:none;cursor:pointer;white-space:nowrap;
+}
+.rfl-nav-signin:hover{color:var(--red)}
+.rfl-nav-hamburger{display:none}
+@media(max-width:1080px){
+  .rfl-nav-menu,.rfl-nav-kickoff,.rfl-nav-right .rfl-nav-textlink{display:none}
+  .rfl-nav-hamburger{
+    display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;
+    width:40px;height:40px;align-items:center;justify-content:center;
+  }
+  .rfl-nav-hamburger span{display:block;width:20px;height:2px;background:var(--tx);border-radius:2px}
+}
+
+/* ═══════════════ PROMO BANNER ═══════════════ */
+.rfl-promo{
+  margin-top:104px;
+  position:relative;overflow:hidden;
+  background:
+    linear-gradient(100deg,rgba(4,4,6,.92) 0%,rgba(4,4,6,.55) 45%,rgba(213,10,10,.28) 100%),
+    #0c0d10;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  padding:22px 28px;
+}
+.rfl-promo-left{display:flex;align-items:center;gap:18px}
+.rfl-promo-logo{width:52px;height:52px;object-fit:contain;border-radius:10px;flex-shrink:0;background:rgba(255,255,255,.08);padding:6px}
+.rfl-promo-eyebrow{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.1em;color:#ff5b5b}
+.rfl-promo-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.03em;color:#fff;line-height:1}
+.rfl-promo-cta{
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:800;letter-spacing:.02em;
+  color:var(--tx);background:#fff;border:none;border-radius:8px;
+  padding:14px 26px;cursor:pointer;white-space:nowrap;transition:transform .12s,opacity .15s;
+}
+.rfl-promo-cta:hover{opacity:.88;transform:translateY(-1px)}
+
+/* ═══════════════ FEATURE: PHOTO GRID + SIDEBAR ═══════════════ */
+.rfl-feature{display:grid;grid-template-columns:1fr 380px;gap:0;align-items:stretch}
+.rfl-photogrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--b)}
+.rfl-photogrid a{position:relative;display:block;overflow:hidden;aspect-ratio:3/4}
+.rfl-photogrid img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s var(--ease)}
+.rfl-photogrid a:hover img{transform:scale(1.05)}
+.rfl-photogrid span{
+  position:absolute;left:0;right:0;bottom:0;padding:14px 12px 10px;color:#fff;
+  font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.03em;
+  background:linear-gradient(0deg,rgba(0,0,0,.78),transparent);
+}
+@media(max-width:900px){.rfl-feature{grid-template-columns:1fr}.rfl-photogrid{grid-template-columns:repeat(2,1fr)}}
+
+.rfl-sidebar{background:var(--s1);border-left:1px solid var(--b);display:flex;flex-direction:column}
+.rfl-sb-tabs{display:flex;border-bottom:2px solid var(--b);padding:14px 18px 0}
+.rfl-sb-tab{
+  font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.04em;
+  color:var(--mu);padding:0 0 12px;margin-right:22px;cursor:pointer;
+  border-bottom:3px solid transparent;
+}
+.rfl-sb-tab.active{color:var(--tx);border-color:var(--red)}
+.rfl-sb-list{display:flex;flex-direction:column}
+.rfl-sb-row{
+  display:flex;align-items:flex-start;gap:10px;padding:14px 18px;
+  border-bottom:1px solid var(--b2);cursor:pointer;transition:background .12s;
+}
+.rfl-sb-row:hover{background:var(--s2)}
+.rfl-sb-row-icon{width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--mu)}
+.rfl-sb-row-text{font-size:13.5px;font-weight:700;line-height:1.35;color:var(--tx)}
+
 nav{
   position:fixed;top:0;left:0;right:0;z-index:200;
   height:var(--nav-h);
@@ -94,13 +231,11 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
   padding-left:max(20px,var(--safe-left));
   padding-right:max(20px,var(--safe-right));
-  background:var(--glass-bg);
-  backdrop-filter:blur(var(--glass-blur)) saturate(160%);
-  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(160%);
-  border-bottom:1px solid var(--glass-border);
-  transition:border-color .3s,box-shadow .3s,transform .3s var(--ease-soft),background .3s;
+  background:var(--s1);
+  border-bottom:1px solid var(--b);
+  transition:box-shadow .3s,transform .3s var(--ease-soft);
 }
-nav.scrolled{background:rgba(21,21,36,.86);box-shadow:0 8px 32px rgba(0,0,0,.35)}
+nav.scrolled{box-shadow:0 4px 20px rgba(15,17,20,.08)}
 nav.nav-hidden{transform:translateY(-100%)}
 .nav-left{display:flex;align-items:center;gap:12px}
 .nav-logo{
@@ -108,58 +243,56 @@ nav.nav-hidden{transform:translateY(-100%)}
   cursor:pointer;text-decoration:none;
   -webkit-tap-highlight-color:transparent;
 }
-.nav-logo img{transition:transform .35s var(--ease);border:1px solid var(--glass-border)}
+.nav-logo img{transition:transform .35s var(--ease);border:1px solid var(--b)}
 .nav-logo:hover img{transform:rotate(-8deg) scale(1.06)}
 .nav-brand{
   font-family:'Bebas Neue',sans-serif;
-  font-size:17px;letter-spacing:.08em;color:#fff;white-space:nowrap;
+  font-size:17px;letter-spacing:.08em;color:var(--tx);white-space:nowrap;
 }
 .nav-brand em{color:var(--red);font-style:normal}
 .nav-pill{
-  font-size:10px;font-weight:600;letter-spacing:.08em;
-  color:var(--tx2);text-transform:uppercase;
-  background:var(--glass-bg-soft);border:1px solid var(--glass-border);border-radius:20px;padding:3px 9px;
-  position:relative;backdrop-filter:blur(6px);
+  font-size:10px;font-weight:700;letter-spacing:.08em;
+  color:#fff;text-transform:uppercase;
+  background:var(--red);border:none;border-radius:20px;padding:3px 9px;
+  position:relative;
 }
 .nav-center{
   display:flex;align-items:center;gap:1px;
   position:absolute;left:50%;transform:translateX(-50%);
-  background:var(--glass-bg-soft);
-  border:1px solid var(--glass-border);
+  background:var(--s2);
+  border:1px solid var(--b);
   border-radius:11px;padding:3px;
-  backdrop-filter:blur(6px);
 }
 .nav-center button{
   position:relative;
   background:none;border:none;color:var(--tx2);
-  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:500;
+  font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;
   padding:6px 12px;border-radius:8px;cursor:pointer;letter-spacing:.01em;
   transition:color .16s,background .16s;white-space:nowrap;
   -webkit-tap-highlight-color:transparent;
 }
 .nav-center button::after{content:'';position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;background:var(--red);transform:scaleX(0);transform-origin:center;transition:transform .25s var(--ease)}
-.nav-center button:hover{color:var(--tx);background:rgba(255,255,255,.07)}
-.nav-center button.active{color:#fff;background:rgba(255,255,255,.1)}
-.nav-center button.active::after{transform:scaleX(1)}
+.nav-center button:hover{color:var(--tx);background:rgba(15,17,20,.05)}
+.nav-center button.active{color:#fff;background:var(--red)}
+.nav-center button.active::after{transform:scaleX(0)}
 .nav-right{display:flex;align-items:center;gap:10px}
 .nav-cta{
   display:flex;align-items:center;gap:6px;
   font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  color:#fff;background:var(--red);border:1px solid rgba(255,255,255,.15);border-radius:8px;
+  color:#fff;background:var(--red);border:1px solid var(--red);border-radius:8px;
   padding:8px 16px;cursor:pointer;position:relative;overflow:hidden;
-  transition:background .16s,box-shadow .16s,transform .12s;
+  transition:opacity .16s,box-shadow .16s,transform .12s;
   -webkit-tap-highlight-color:transparent;
 }
-.nav-cta:hover{background:#5b3fd9;box-shadow:0 4px 24px rgba(99,70,240,.5);transform:translateY(-1px)}
+.nav-cta:hover{opacity:.88;box-shadow:0 4px 24px rgba(213,10,10,.35);transform:translateY(-1px)}
 .nav-cta:active{transform:translateY(0) scale(.97)}
 .nav-secondary{
   display:flex;align-items:center;gap:6px;
-  background:var(--glass-bg-soft);border:1px solid var(--glass-border);border-radius:8px;
+  background:var(--s2);border:1px solid var(--b);border-radius:8px;
   color:var(--tx2);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
   padding:8px 14px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;
-  backdrop-filter:blur(6px);
 }
-.nav-secondary:hover{border-color:rgba(99,70,240,.4);color:var(--tx)}
+.nav-secondary:hover{border-color:var(--red-edge);color:var(--tx)}
 .nav-hamburger{
   display:none;flex-direction:column;gap:5px;
   cursor:pointer;background:none;border:none;
@@ -167,7 +300,7 @@ nav.nav-hidden{transform:translateY(-100%)}
   align-items:center;justify-content:center;border-radius:8px;
   -webkit-tap-highlight-color:transparent;transition:background .16s;
 }
-.nav-hamburger:hover{background:rgba(255,255,255,.08)}
+.nav-hamburger:hover{background:rgba(15,17,20,.06)}
 .nav-hamburger span{
   display:block;width:20px;height:2px;
   background:var(--tx2);border-radius:2px;
@@ -182,14 +315,14 @@ nav.nav-hidden{transform:translateY(-100%)}
 .mobile-menu{
   position:fixed;
   top:calc(var(--nav-h) + var(--safe-top));left:0;right:0;z-index:190;
-  background:rgba(21,21,36,.96);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--glass-border);
+  background:var(--s1);
+  border-bottom:1px solid var(--b);
   padding:8px 12px calc(16px + var(--safe-bottom));
   flex-direction:column;gap:2px;
   transform:translateY(-8px);opacity:0;pointer-events:none;
   transition:opacity .22s ease,transform .22s ease;display:flex;
   max-height:calc(100svh - var(--nav-h) - var(--safe-top));overflow-y:auto;
+  box-shadow:0 12px 30px rgba(15,17,20,.12);
 }
 .mobile-menu.open{opacity:1;transform:translateY(0);pointer-events:auto}
 .mobile-menu button{
@@ -258,7 +391,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 }
 .hero-static-bg{
   position:absolute;inset:0;z-index:0;
-  background-image:url('Images/NFLBackgroundBanner.jpg');
+  background-image:url('Images/RFLImage2.webp');
   background-size:cover;background-position:center 22%;
   filter:brightness(.52) saturate(.92);
   transform:scale(1.02);
@@ -266,13 +399,13 @@ nav.nav-hidden{transform:translateY(-100%)}
 .hero-vignette{
   position:absolute;inset:0;z-index:1;
   background:
-    linear-gradient(to top,var(--bg) 0%,rgba(15,15,26,.55) 32%,transparent 60%),
-    linear-gradient(to right,rgba(15,15,26,.85) 0%,rgba(15,15,26,.25) 50%,transparent 70%);
+    linear-gradient(to top,var(--bg) 0%,rgba(4,4,6,.6) 32%,transparent 60%),
+    linear-gradient(to right,rgba(4,4,6,.85) 0%,rgba(4,4,6,.25) 50%,transparent 70%);
   pointer-events:none;
 }
 .hero-top-fade{
   position:absolute;top:0;left:0;right:0;height:120px;z-index:1;
-  background:linear-gradient(to bottom,rgba(15,15,26,.5) 0%,transparent 100%);
+  background:linear-gradient(to bottom,rgba(4,4,6,.5) 0%,transparent 100%);
   pointer-events:none;
 }
 .hero-content{
@@ -371,7 +504,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 }
 .mobile-stat{padding:20px 16px;border-right:1px solid var(--glass-border);text-align:center}
 .mobile-stat:last-child{border-right:none}
-.mobile-stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:#fff;line-height:1;display:block}
+.mobile-stat-num{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--tx);line-height:1;display:block}
 .mobile-stat-label{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);margin-top:5px;font-family:'JetBrains Mono',monospace;display:block}
 
 .status-strip{
@@ -387,7 +520,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 .status-item:hover{background:rgba(255,255,255,.03)}
 .status-item:last-child{border-right:none}
 .status-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tx2);margin-bottom:8px;font-family:'JetBrains Mono',monospace}
-.status-value{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:#fff;font-variant-numeric:tabular-nums}
+.status-value{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--tx);font-variant-numeric:tabular-nums}
 .status-live{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gr)}
 .live-dot{width:7px;height:7px;border-radius:50%;background:var(--gr);flex-shrink:0;animation:sLivePulse 2s ease infinite;box-shadow:0 0 0 0 rgba(24,212,100,.4)}
 @keyframes sLivePulse{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(24,212,100,.4)}50%{transform:scale(1.15);box-shadow:0 0 0 6px rgba(24,212,100,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(24,212,100,.4)}}
@@ -397,7 +530,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 .sec-hd-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .section-eyebrow{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a78bfa;margin-bottom:10px;font-family:'JetBrains Mono',monospace}
 .section-eyebrow::before{content:'';width:20px;height:2px;background:var(--red);border-radius:2px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,46px);letter-spacing:.03em;line-height:.95;color:#fff}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,46px);letter-spacing:.03em;line-height:.95;color:var(--tx)}
 .sec-ct{
   font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
   color:var(--tx2);background:var(--s3);border:1px solid var(--glass-border);
@@ -528,7 +661,7 @@ nav.nav-hidden{transform:translateY(-100%)}
 .link-card:hover .link-icon{background:rgba(99,70,240,.24);transform:scale(1.06) rotate(-4deg)}
 .link-icon svg{width:20px;height:20px;fill:var(--red)}
 .link-body{flex:1;min-width:0;position:relative;z-index:1}
-.link-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;color:#fff;margin-bottom:8px}
+.link-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.04em;color:var(--tx);margin-bottom:8px}
 .link-desc{font-size:12.5px;color:var(--tx2);line-height:1.7;font-weight:400}
 .link-action{display:inline-flex;align-items:center;gap:5px;margin-top:16px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a78bfa;font-family:'JetBrains Mono',monospace;transition:gap .2s}
 .link-card:hover .link-action{gap:9px}
@@ -721,35 +854,93 @@ h1 em,.nav-brand em{
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<nav id="mainNav">
-  <div class="nav-left">
-    <div class="nav-logo" onclick="navigate('home')">
-      <img src="Images/RFL.webp" alt="RFL" style="width:30px;height:30px;object-fit:contain;border-radius:7px;">
-      <span class="nav-brand">Revolutionary <em>Football League</em></span>
+<nav id="mainNav" class="rfl-ticker">
+  <div class="rfl-tk-brand"><b>RFL</b><span>Season 1</span></div>
+  <button class="rfl-tk-item" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">
+    <div class="rfl-tk-dot"></div>
+    <div><div class="rfl-tk-label">DISCORD</div><div class="rfl-tk-meta">Join Now</div></div>
+  </button>
+  <button class="rfl-tk-item" onclick="navigate('standings')">
+    <div class="rfl-tk-dot"></div>
+    <div><div class="rfl-tk-label">STANDINGS</div><div class="rfl-tk-meta">Live</div></div>
+  </button>
+  <button class="rfl-tk-item" onclick="navigate('history')">
+    <div class="rfl-tk-dot" style="background:var(--bl)"></div>
+    <div><div class="rfl-tk-label">HISTORY</div><div class="rfl-tk-meta">Match Log</div></div>
+  </button>
+  <button class="rfl-tk-item" onclick="navigate('rules')">
+    <div class="rfl-tk-dot" style="background:var(--am)"></div>
+    <div><div class="rfl-tk-label">RULEBOOK</div><div class="rfl-tk-meta">Official</div></div>
+  </button>
+  <button class="rfl-tk-item" onclick="comingSoon('Bracket')">
+    <div class="rfl-tk-dot" style="background:#6b7280"></div>
+    <div><div class="rfl-tk-label">BRACKET</div><div class="rfl-tk-meta">Coming Soon</div></div>
+  </button>
+  <button class="rfl-tk-item" onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">
+    <div class="rfl-tk-dot" style="background:#6b7280"></div>
+    <div><div class="rfl-tk-label">YOUTUBE</div><div class="rfl-tk-meta">Watch</div></div>
+  </button>
+  <button class="rfl-tk-item" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
+    <div class="rfl-tk-dot" style="background:var(--red)"></div>
+    <div><div class="rfl-tk-label">APPLY</div><div class="rfl-tk-meta">Front Office</div></div>
+  </button>
+</nav>
+
+<div class="rfl-nav" id="rflMainNav">
+  <div class="rfl-nav-left">
+    <div class="rfl-nav-logo" onclick="navigate('home')">
+      <img src="Images/RFL.webp" alt="RFL">
     </div>
-    <span class="nav-pill">Season 1</span>
+    <div class="rfl-nav-menu">
+      <div class="rfl-nav-dd">
+        <span>WATCH <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <div class="rfl-nav-panel">
+          <button onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">YouTube Channel</button>
+          <button onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Live Game Announcements</button>
+        </div>
+      </div>
+      <div class="rfl-nav-dd">
+        <span>COMPETITION <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <div class="rfl-nav-panel">
+          <button onclick="navigate('standings')">Standings</button>
+          <button onclick="navigate('history')">Match History</button>
+          <button onclick="comingSoon('Bracket')">Bracket</button>
+        </div>
+      </div>
+      <div class="rfl-nav-dd">
+        <span>NEWS <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <div class="rfl-nav-panel">
+          <button onclick="navigate('history')">Match Recaps</button>
+          <button onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Announcements</button>
+        </div>
+      </div>
+      <div class="rfl-nav-dd">
+        <span>FRONT OFFICE <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <div class="rfl-nav-panel">
+          <button onclick="comingSoon('Salary')">Salary</button>
+          <button onclick="comingSoon('Capsheet')">Capsheet</button>
+          <button onclick="comingSoon('Team Database')">Team Database</button>
+        </div>
+      </div>
+      <div class="rfl-nav-dd">
+        <span>RULES <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <div class="rfl-nav-panel">
+          <button onclick="navigate('rules')">Rulebook</button>
+        </div>
+      </div>
+    </div>
+    <span class="rfl-nav-kickoff" onclick="window.open('https://rpl-applications.vercel.app','_blank')">APPLICATIONS</span>
   </div>
-  <div class="nav-center">
-    <button onclick="navigate('home')"      data-page="home"      class="active">Home</button>
-    <button onclick="comingSoon('Salary')"    data-page="salary">Salary</button>
-      <button onclick="comingSoon('Capsheet')"    data-page="capsheet">Capsheet</button>
-    <button onclick="comingSoon('Team Database')"  data-page="database">Database</button>
-    <button onclick="navigate('standings')" data-page="standings">Standings</button>
-    <button onclick="navigate('history')"   data-page="history">History</button>
-    <button onclick="comingSoon('Bracket')"   data-page="bracket">Bracket</button>
-    <button onclick="navigate('rules')"   data-page="rules">Rulebook</button>
-    <button onclick="window.open('https://rpl-applications.vercel.app','_blank')" data-page="applications">Applications</button>
-  </div>
-  <div class="nav-right">
-    <button class="nav-cta" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.112 18.1.131 18.116a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-      Join Discord
-    </button>
-    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
+  <div class="rfl-nav-right">
+    <span class="rfl-nav-textlink" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Discord ↗</span>
+    <span class="rfl-nav-textlink" onclick="window.open('https://www.roblox.com/groups','_blank')">Roblox Group ↗</span>
+    <span class="rfl-nav-textlink" onclick="window.open('https://www.youtube.com/@SportingGear/featured','_blank')">YouTube ↗</span>
+    <button class="rfl-nav-signin" onclick="toggleAdmin()">Admin</button>
+    <button class="nav-hamburger rfl-nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
-</nav>
+</div>
 
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
   <button onclick="navigate('home');closeMenu()"      data-page="home"      class="active">Home</button>
@@ -767,80 +958,54 @@ h1 em,.nav-brand em{
 
 <div id="page-home" class="page">
 
-  <div class="hero">
-    <div class="hero-static-bg"></div>
-    <div class="hero-top-fade"></div>
-    <div class="hero-vignette"></div>
-    <div class="hero-content" id="heroContent">
-      <div class="hero-eyebrow">Season 1 — Fresh Beginning</div>
-      <h1><span class="ln">Revolutionary</span><span class="ln"><em>Football League</em></span></h1>
-      <p class="hero-sub">The most structured tackle football league on Roblox. Elite systems. Real competition. A brand new league, starting from scratch.</p>
-      <div class="hero-actions">
-        <a href="https://discord.gg/Fg8gPsruNw" target="_blank" rel="noopener" class="btn-primary">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.08.112 18.1.131 18.116a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-          Join Discord
-        </a>
-        <button class="btn-ghost" onclick="comingSoon('Salary')">View Teams</button>
-      </div>
-      <div class="hero-key-row">
-        <div class="hero-key-chip"><span class="dot on"></span>Live Standings</div>
-        <div class="hero-key-chip"><span class="dot" style="background:var(--bl)"></span>Season 1</div>
-        <div class="hero-key-chip"><span class="dot" style="background:var(--am)"></span>Fresh Start</div>
+  <div class="rfl-promo reveal">
+    <div class="rfl-promo-left">
+      <img class="rfl-promo-logo" src="Images/RFL.webp" alt="RFL">
+      <div>
+        <div class="rfl-promo-eyebrow">SEASON 1 — FRESH BEGINNING</div>
+        <div class="rfl-promo-title">Revolutionary Football League Kicks Off</div>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="hero-stat-num">S1</span><span class="hero-stat-label">Current Season</span></div>
-      <div class="hero-stat"><span class="hero-stat-num">New</span><span class="hero-stat-label">League</span></div>
-      <div class="hero-stat"><span class="hero-stat-num">Live</span><span class="hero-stat-label">Standings</span></div>
+    <button class="rfl-promo-cta" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">Join Discord</button>
+  </div>
+
+  <div class="rfl-feature">
+    <div class="rfl-photogrid">
+      <a href="#" onclick="navigate('standings');return false;"><img src="Images/RFLImage2.webp" alt=""><span>Live Standings</span></a>
+      <a href="#" onclick="navigate('history');return false;"><img src="Images/RFLImage3.webp" alt=""><span>Match History</span></a>
+      <a href="#" onclick="navigate('rules');return false;"><img src="Images/RFLImage4.webp" alt=""><span>Rulebook</span></a>
+      <a href="https://discord.gg/Fg8gPsruNw" target="_blank" rel="noopener"><img src="Images/RFLImage5.webp" alt=""><span>Join Discord</span></a>
     </div>
-    <button class="scroll-cue" id="scrollCue" aria-label="Scroll down to see more">
-      <span>Scroll For More</span>
-      <span class="scroll-cue-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    </button>
-  </div>
-
-  <div class="mobile-stats">
-    <div class="mobile-stat"><span class="mobile-stat-num">S1</span><span class="mobile-stat-label">Season</span></div>
-    <div class="mobile-stat"><span class="mobile-stat-num" style="font-size:20px;">New</span><span class="mobile-stat-label">League</span></div>
-    <div class="mobile-stat"><span class="mobile-stat-num" style="color:var(--gr);font-size:16px;padding-top:4px;">●</span><span class="mobile-stat-label">Live</span></div>
-  </div>
-
-  <div class="status-strip reveal">
-    <div class="status-item"><div class="status-label">Season Status</div><div class="status-live"><div class="live-dot"></div>Live</div></div>
-    <div class="status-item"><div class="status-label">League Stage</div><div class="status-value">Launch</div></div>
-    <div class="status-item"><div class="status-label">Season</div><div class="status-value" data-count="1">0</div></div>
-    <div class="status-item"><div class="status-label">Scripts</div><div class="status-value">Gameday</div></div>
-  </div>
-
-  <div class="section" id="hub-section">
-    <div class="section-header">
-      <div class="sec-hd-top reveal">
-        <span class="section-title" style="font-size:19px;letter-spacing:.08em;">League Hub</span>
-        <span class="sec-ct">4 sections</span>
-        <div class="sec-rule"></div>
+    <div class="rfl-sidebar">
+      <div class="rfl-sb-tabs">
+        <span class="rfl-sb-tab active">LEAGUE HUB</span>
+        <span class="rfl-sb-tab" onclick="window.open('https://discord.gg/Fg8gPsruNw','_blank')">DISCORD</span>
       </div>
-      <div class="section-eyebrow reveal" style="margin-top:6px;">Everything In One Place</div>
-    </div>
-    <div class="hub-grid reveal">
-      <div class="hub-card" onclick="comingSoon('Salary')" role="button" tabindex="0" aria-label="Salary">
-        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
-        <div class="hub-card-overlay"><div class="hub-card-tag">Finance</div><div class="hub-card-name">Salary</div></div>
-        <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </div>
-      <div class="hub-card" onclick="comingSoon('Team Database')" role="button" tabindex="0" aria-label="Team Database">
-        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
-        <div class="hub-card-overlay"><div class="hub-card-tag">Leaders</div><div class="hub-card-name">Team Database</div></div>
-        <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </div>
-      <div class="hub-card" onclick="navigate('standings')" role="button" tabindex="0" aria-label="Standings">
-        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
-        <div class="hub-card-overlay"><div class="hub-card-tag">Live</div><div class="hub-card-name">Standings</div></div>
-        <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      </div>
-      <div class="hub-card" onclick="navigate('rules')" role="button" tabindex="0" aria-label="Rulebook">
-        <img src="Images/NFLBackgroundBanner.jpg" alt="" loading="lazy">
-        <div class="hub-card-overlay"><div class="hub-card-tag">Policies</div><div class="hub-card-name">Rulebook</div></div>
-        <div class="hub-card-arrow" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="rfl-sb-list">
+        <div class="rfl-sb-row" onclick="navigate('standings')">
+          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M4 19V5M10 19V9M16 19V3M22 19H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="rfl-sb-row-text">Standings — live records, updated after every game</div>
+        </div>
+        <div class="rfl-sb-row" onclick="navigate('history')">
+          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="rfl-sb-row-text">Match History — full result log for Season 1</div>
+        </div>
+        <div class="rfl-sb-row" onclick="comingSoon('Salary')">
+          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="rfl-sb-row-text">Salary — front-office finance tools (coming soon)</div>
+        </div>
+        <div class="rfl-sb-row" onclick="comingSoon('Team Database')">
+          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.8"/></svg>
+          <div class="rfl-sb-row-text">Team Database — full roster directory (coming soon)</div>
+        </div>
+        <div class="rfl-sb-row" onclick="navigate('rules')">
+          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="rfl-sb-row-text">Rulebook — official league policies and gameday rules</div>
+        </div>
+        <div class="rfl-sb-row" onclick="window.open('https://rpl-applications.vercel.app','_blank')">
+          <svg class="rfl-sb-row-icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <div class="rfl-sb-row-text">Applications — apply for a front-office role</div>
+        </div>
       </div>
     </div>
   </div>
